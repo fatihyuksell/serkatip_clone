@@ -1,0 +1,2868 @@
+define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter_layout_grid/src/foundation/placement.dart', 'packages/flutter_layout_grid/src/rendering/track_size.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/quiver/src/iterables/partition.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter_layout_grid/src/foundation/collections.dart', 'packages/flutter/src/foundation/print.dart', 'packages/collection/src/functions.dart', 'packages/collection/src/iterable_extensions.dart', 'packages/flutter/src/rendering/debug_overflow_indicator.dart', 'packages/quiver/src/iterables/enumerate.dart', 'packages/flutter/src/foundation/key.dart'], (function load__packages__flutter_layout_grid__src__rendering__placement_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter_layout_grid__src__foundation__placement$46dart, packages__flutter_layout_grid__src__rendering__track_size$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__foundation__debug$46dart, packages__quiver__src__iterables__partition$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter_layout_grid__src__foundation__collections$46dart, packages__flutter__src__foundation__print$46dart, packages__collection__src__functions$46dart, packages__collection__src__iterable_extensions$46dart, packages__flutter__src__rendering__debug_overflow_indicator$46dart, packages__quiver__src__iterables__enumerate$46dart, packages__flutter__src__foundation__key$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
+  const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const placement = packages__flutter_layout_grid__src__foundation__placement$46dart.src__foundation__placement;
+  const track_size = packages__flutter_layout_grid__src__rendering__track_size$46dart.src__rendering__track_size;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const partition = packages__quiver__src__iterables__partition$46dart.src__iterables__partition;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const collections = packages__flutter_layout_grid__src__foundation__collections$46dart.src__foundation__collections;
+  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
+  const functions = packages__collection__src__functions$46dart.src__functions;
+  const iterable_extensions = packages__collection__src__iterable_extensions$46dart.src__iterable_extensions;
+  const debug_overflow_indicator = packages__flutter__src__rendering__debug_overflow_indicator$46dart.src__rendering__debug_overflow_indicator;
+  const enumerate = packages__quiver__src__iterables__enumerate$46dart.src__iterables__enumerate;
+  const key = packages__flutter__src__foundation__key$46dart.src__foundation__key;
+  var placement$ = Object.create(dart.library);
+  var debug = Object.create(dart.library);
+  var layout_grid = Object.create(dart.library);
+  var box$ = Object.create(dart.library);
+  var layout_grid$ = Object.create(dart.library);
+  var placement$0 = Object.create(dart.library);
+  var helpers = Object.create(dart.library);
+  var flutter_layout_grid = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $followedBy = dartx.followedBy;
+  var $every = dartx.every;
+  var $_set = dartx._set;
+  var $times = dartx['*'];
+  var $map = dartx.map;
+  var $join = dartx.join;
+  var $firstWhere = dartx.firstWhere;
+  var $modulo = dartx['%'];
+  var $truncate = dartx.truncate;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $first = dartx.first;
+  var $add = dartx.add;
+  var $isEmpty = dartx.isEmpty;
+  var $expand = dartx.expand;
+  var $toList = dartx.toList;
+  var $isFinite = dartx.isFinite;
+  var $toUpperCase = dartx.toUpperCase;
+  var $keys = dartx.keys;
+  var $sort = dartx.sort;
+  var $getRange = dartx.getRange;
+  var $any = dartx.any;
+  var $where = dartx.where;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $compareTo = dartx.compareTo;
+  var $toDouble = dartx.toDouble;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    LinkedMapOfRenderBox$GridArea: () => (T.LinkedMapOfRenderBox$GridArea = dart.constFn(_js_helper.LinkedMap$(box.RenderBox, placement.GridArea)))(),
+    ListOfGridCell: () => (T.ListOfGridCell = dart.constFn(core.List$(placement$.GridCell)))(),
+    intToGridCell: () => (T.intToGridCell = dart.constFn(dart.fnType(placement$.GridCell, [core.int])))(),
+    JSArrayOfGridCell: () => (T.JSArrayOfGridCell = dart.constFn(_interceptors.JSArray$(placement$.GridCell)))(),
+    SyncIterableOfGridCell: () => (T.SyncIterableOfGridCell = dart.constFn(_js_helper.SyncIterable$(placement$.GridCell)))(),
+    GridCellTobool: () => (T.GridCellTobool = dart.constFn(dart.fnType(core.bool, [placement$.GridCell])))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    GridCellToString: () => (T.GridCellToString = dart.constFn(dart.fnType(core.String, [placement$.GridCell])))(),
+    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
+    ListOfStringToString: () => (T.ListOfStringToString = dart.constFn(dart.fnType(core.String, [T.ListOfString()])))(),
+    intN: () => (T.intN = dart.constFn(dart.nullable(core.int)))(),
+    VoidTointN: () => (T.VoidTointN = dart.constFn(dart.fnType(T.intN(), [])))(),
+    SyncIterableOfGridArea: () => (T.SyncIterableOfGridArea = dart.constFn(_js_helper.SyncIterable$(placement.GridArea)))(),
+    LinkedHashSetOfRenderBox: () => (T.LinkedHashSetOfRenderBox = dart.constFn(collection.LinkedHashSet$(box.RenderBox)))(),
+    JSArrayOfRenderBox: () => (T.JSArrayOfRenderBox = dart.constFn(_interceptors.JSArray$(box.RenderBox)))(),
+    GridTrackToint: () => (T.GridTrackToint = dart.constFn(dart.fnType(core.int, [layout_grid$.GridTrack])))(),
+    AutoPlacementL: () => (T.AutoPlacementL = dart.constFn(dart.legacy(layout_grid.AutoPlacement)))(),
+    GridFitL: () => (T.GridFitL = dart.constFn(dart.legacy(layout_grid.GridFit)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    IterablePropertyOfTrackSize: () => (T.IterablePropertyOfTrackSize = dart.constFn(diagnostics.IterableProperty$(track_size.TrackSize)))(),
+    EnumPropertyOfAutoPlacement: () => (T.EnumPropertyOfAutoPlacement = dart.constFn(diagnostics.EnumProperty$(layout_grid.AutoPlacement)))(),
+    EnumPropertyOfGridFit: () => (T.EnumPropertyOfGridFit = dart.constFn(diagnostics.EnumProperty$(layout_grid.GridFit)))(),
+    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
+    GridFitToBoxConstraints: () => (T.GridFitToBoxConstraints = dart.constFn(dart.fnType(box.BoxConstraints, [layout_grid.GridFit])))(),
+    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
+    SetOfRenderBox: () => (T.SetOfRenderBox = dart.constFn(core.Set$(box.RenderBox)))(),
+    GridCellToSetOfRenderBox: () => (T.GridCellToSetOfRenderBox = dart.constFn(dart.fnType(T.SetOfRenderBox(), [placement$.GridCell])))(),
+    JSArrayOfGridTrack: () => (T.JSArrayOfGridTrack = dart.constFn(_interceptors.JSArray$(layout_grid$.GridTrack)))(),
+    MinMaxOfdouble: () => (T.MinMaxOfdouble = dart.constFn(layout_grid$.MinMax$(core.double)))(),
+    ListOfRenderBox: () => (T.ListOfRenderBox = dart.constFn(core.List$(box.RenderBox)))(),
+    GridTrackToListOfRenderBox: () => (T.GridTrackToListOfRenderBox = dart.constFn(dart.fnType(T.ListOfRenderBox(), [layout_grid$.GridTrack])))(),
+    RenderObjectToint: () => (T.RenderObjectToint = dart.constFn(dart.fnType(core.int, [object.RenderObject])))(),
+    RenderBoxToint: () => (T.RenderBoxToint = dart.constFn(dart.fnType(core.int, [box.RenderBox])))(),
+    GridTrackTobool: () => (T.GridTrackTobool = dart.constFn(dart.fnType(core.bool, [layout_grid$.GridTrack])))(),
+    RenderBoxTodouble: () => (T.RenderBoxTodouble = dart.constFn(dart.fnType(core.double, [box.RenderBox])))(),
+    ListOfGridTrack: () => (T.ListOfGridTrack = dart.constFn(core.List$(layout_grid$.GridTrack)))(),
+    GridTrackAnddoubleTodouble: () => (T.GridTrackAnddoubleTodouble = dart.constFn(dart.fnType(core.double, [layout_grid$.GridTrack, core.double])))(),
+    ListOfGridTrackAndFnTovoid: () => (T.ListOfGridTrackAndFnTovoid = dart.constFn(dart.fnType(dart.void, [T.ListOfGridTrack(), T.GridTrackAnddoubleTodouble()])))(),
+    GridTrackAndGridTrackToint: () => (T.GridTrackAndGridTrackToint = dart.constFn(dart.fnType(core.int, [layout_grid$.GridTrack, layout_grid$.GridTrack])))(),
+    GridParentDataN: () => (T.GridParentDataN = dart.constFn(dart.nullable(layout_grid$.GridParentData)))(),
+    RenderObjectTovoid: () => (T.RenderObjectTovoid = dart.constFn(dart.fnType(dart.void, [object.RenderObject])))(),
+    _IntrinsicDimensionL: () => (T._IntrinsicDimensionL = dart.constFn(dart.legacy(layout_grid$._IntrinsicDimension)))(),
+    UnmodifiableListViewOfGridTrack: () => (T.UnmodifiableListViewOfGridTrack = dart.constFn(collection.UnmodifiableListView$(layout_grid$.GridTrack)))(),
+    GridTrackTodouble: () => (T.GridTrackTodouble = dart.constFn(dart.fnType(core.double, [layout_grid$.GridTrack])))(),
+    MinMaxOfnum: () => (T.MinMaxOfnum = dart.constFn(layout_grid$.MinMax$(core.num)))(),
+    IndexedValueOfTrackSize: () => (T.IndexedValueOfTrackSize = dart.constFn(enumerate.IndexedValue$(track_size.TrackSize)))(),
+    IndexedValueOfTrackSizeToGridTrack: () => (T.IndexedValueOfTrackSizeToGridTrack = dart.constFn(dart.fnType(layout_grid$.GridTrack, [T.IndexedValueOfTrackSize()])))(),
+    AutoPlacementPackingL: () => (T.AutoPlacementPackingL = dart.constFn(dart.legacy(placement$0.AutoPlacementPacking)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    KeyN: () => (T.KeyN = dart.constFn(dart.nullable(key.Key)))(),
+    String__ToNamedAreaGridPlacement: () => (T.String__ToNamedAreaGridPlacement = dart.constFn(dart.fnType(placement$0.NamedAreaGridPlacement, [core.String], {key: T.KeyN()}, {})))(),
+    __ToGridPlacement: () => (T.__ToGridPlacement = dart.constFn(dart.fnType(placement$0.GridPlacement, [], {columnSpan: core.int, columnStart: T.intN(), key: T.KeyN(), rowSpan: core.int, rowStart: T.intN()}, {})))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: placement$0.AutoPlacementPacking.prototype,
+        [_name$]: "AutoPlacementPacking.sparse",
+        index: 0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: track_size.TrackType.prototype,
+        [_name]: "TrackType.row",
+        index: 1
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: layout_grid.AutoPlacement.prototype,
+        [packing$]: C[1] || CT.C1,
+        [trackType$]: C[2] || CT.C2
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: placement$0.AutoPlacementPacking.prototype,
+        [_name$]: "AutoPlacementPacking.dense",
+        index: 1
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: layout_grid.AutoPlacement.prototype,
+        [packing$]: C[4] || CT.C4,
+        [trackType$]: C[2] || CT.C2
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: track_size.TrackType.prototype,
+        [_name]: "TrackType.column",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: layout_grid.AutoPlacement.prototype,
+        [packing$]: C[1] || CT.C1,
+        [trackType$]: C[6] || CT.C6
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: layout_grid.AutoPlacement.prototype,
+        [packing$]: C[4] || CT.C4,
+        [trackType$]: C[6] || CT.C6
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[0] || CT.C0, C[3] || CT.C3, C[5] || CT.C5, C[7] || CT.C7], T.AutoPlacementL());
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: layout_grid.GridFit.prototype,
+        [_name$0]: "GridFit.expand",
+        index: 0
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: layout_grid.GridFit.prototype,
+        [_name$0]: "GridFit.loose",
+        index: 1
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: layout_grid.GridFit.prototype,
+        [_name$0]: "GridFit.passthrough",
+        index: 2
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], T.GridFitL());
+    },
+    get C13() {
+      return C[13] = dart.constList([], T.WidgetL());
+    },
+    get C14() {
+      return C[14] = dart.fn(layout_grid$._sortByGrowthPotential, T.GridTrackAndGridTrackToint());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2425393296.0
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: layout_grid$._IntrinsicDimension.prototype,
+        [_name$1]: "_IntrinsicDimension.min",
+        index: 0
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: layout_grid$._IntrinsicDimension.prototype,
+        [_name$1]: "_IntrinsicDimension.max",
+        index: 1
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[16] || CT.C16, C[17] || CT.C17], T._IntrinsicDimensionL());
+    },
+    get C19() {
+      return C[19] = dart.constList([C[1] || CT.C1, C[4] || CT.C4], T.AutoPlacementPackingL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 7,
+        [_Location_line]: 152,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "areaName",
+        [_Location_column]: 7,
+        [_Location_line]: 153,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 154,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 151,
+        [_Location_file]: "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/widgets/placement.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 7,
+        [_Location_line]: 166,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "columnStart",
+        [_Location_column]: 7,
+        [_Location_line]: 167,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "columnSpan",
+        [_Location_column]: 7,
+        [_Location_line]: 168,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rowStart",
+        [_Location_column]: 7,
+        [_Location_line]: 169,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rowSpan",
+        [_Location_column]: 7,
+        [_Location_line]: 170,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 171,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32], T._LocationL());
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 165,
+        [_Location_file]: "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/widgets/placement.dart"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "areaName",
+        [_Location_column]: 7,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.constList([C[35] || CT.C35, C[36] || CT.C36], T._LocationL());
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[34] || CT.C34,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 78,
+        [_Location_file]: "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/helpers.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: track_size.IntrinsicContentTrackSize.prototype,
+        [TrackSize_debugLabel]: null
+      });
+    }
+  }, false);
+  var C = Array(38).fill(void 0);
+  var I = [
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/rendering/placement.dart",
+    "package:flutter_layout_grid/src/rendering/placement.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/rendering/debug.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/widgets/layout_grid.dart",
+    "package:flutter_layout_grid/src/widgets/layout_grid.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/foundation/box.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/rendering/layout_grid.dart",
+    "package:flutter_layout_grid/src/rendering/layout_grid.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/widgets/placement.dart",
+    "package:flutter_layout_grid/src/widgets/placement.dart",
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_layout_grid-1.0.3/lib/src/helpers.dart",
+    "package:flutter_layout_grid/src/helpers.dart"
+  ];
+  var grid$ = dart.privateName(placement$, "PlacementGrid.grid");
+  var explicitColumnCount = dart.privateName(placement$, "PlacementGrid.explicitColumnCount");
+  var explicitRowCount = dart.privateName(placement$, "PlacementGrid.explicitRowCount");
+  var itemAreas = dart.privateName(placement$, "PlacementGrid.itemAreas");
+  var __PlacementGrid__cells = dart.privateName(placement$, "_#PlacementGrid#_cells");
+  var __PlacementGrid__cells_isSet = dart.privateName(placement$, "_#PlacementGrid#_cells#isSet");
+  var _cells = dart.privateName(placement$, "_cells");
+  placement$.PlacementGrid = class PlacementGrid extends core.Object {
+    get grid() {
+      return this[grid$];
+    }
+    set grid(value) {
+      super.grid = value;
+    }
+    get explicitColumnCount() {
+      return this[explicitColumnCount];
+    }
+    set explicitColumnCount(value) {
+      super.explicitColumnCount = value;
+    }
+    get explicitRowCount() {
+      return this[explicitRowCount];
+    }
+    set explicitRowCount(value) {
+      super.explicitRowCount = value;
+    }
+    get itemAreas() {
+      return this[itemAreas];
+    }
+    set itemAreas(value) {
+      this[itemAreas] = value;
+    }
+    get [_cells]() {
+      let t0;
+      return dart.test(this[__PlacementGrid__cells_isSet]) ? (t0 = this[__PlacementGrid__cells], t0) : dart.throw(new _internal.LateError.fieldNI("_cells"));
+    }
+    set [_cells](t0) {
+      if (t0 == null) dart.nullFailed(I[0], 119, 23, "null");
+      this[__PlacementGrid__cells_isSet] = true;
+      this[__PlacementGrid__cells] = t0;
+    }
+    getCellAt(column, row) {
+      if (column == null) dart.nullFailed(I[0], 121, 26, "column");
+      if (row == null) dart.nullFailed(I[0], 121, 38, "row");
+      return this[_cells][$_get](dart.notNull(row) * dart.notNull(this.explicitColumnCount) + dart.notNull(column));
+    }
+    getCellsInTrack(trackIndex, trackType) {
+      if (trackIndex == null) dart.nullFailed(I[0], 125, 9, "trackIndex");
+      if (trackType == null) dart.nullFailed(I[0], 126, 15, "trackType");
+      return new (T.SyncIterableOfGridCell()).new((function* getCellsInTrack() {
+        let trackMainAxis = track_size.mainAxisForTrackType(trackType);
+        let firstCellIndex = trackMainAxis == basic_types.Axis.vertical ? trackIndex : dart.notNull(trackIndex) * dart.notNull(this.explicitColumnCount);
+        let cell = dart.notNull(this[_cells][$length]) > dart.notNull(firstCellIndex) ? this[_cells][$_get](firstCellIndex) : null;
+        if (cell != null) {
+          yield* T.JSArrayOfGridCell().of([cell])[$followedBy](cell.nextCellsAlongAxis(trackMainAxis));
+        }
+      }).bind(this));
+    }
+    getCellsInArea(area) {
+      if (area == null) dart.nullFailed(I[0], 139, 46, "area");
+      return new (T.SyncIterableOfGridCell()).new((function* getCellsInArea() {
+        for (let x = area.columnStart; dart.notNull(x) < dart.notNull(area.columnEnd); x = dart.notNull(x) + 1) {
+          for (let y = area.rowStart; dart.notNull(y) < dart.notNull(area.rowEnd); y = dart.notNull(y) + 1) {
+            yield this.getCellAt(x, y);
+          }
+        }
+      }).bind(this));
+    }
+    checkIsVacant(area) {
+      if (area == null) dart.nullFailed(I[0], 148, 31, "area");
+      return this.getCellsInArea(area)[$every](dart.fn(c => {
+        if (c == null) dart.nullFailed(I[0], 149, 35, "c");
+        return c.isVacant;
+      }, T.GridCellTobool()));
+    }
+    createCursor(autoPlacementMode) {
+      if (autoPlacementMode == null) dart.nullFailed(I[0], 152, 50, "autoPlacementMode");
+      return new placement$.PlacementGridCursor.new(this, {autoPlacementMode: autoPlacementMode});
+    }
+    addItemToArea(item, area) {
+      if (item == null) dart.nullFailed(I[0], 155, 32, "item");
+      if (area == null) dart.nullFailed(I[0], 155, 47, "area");
+      if (dart.notNull(area.columnEnd) > dart.notNull(this.explicitColumnCount)) {
+        dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("GridPlacement.columnEnd cannot exceed column count\n"), this.grid.toDiagnosticsNode({name: "grid"}), item.toDiagnosticsNode({name: "gridItem"})])));
+      }
+      if (dart.notNull(area.rowEnd) > dart.notNull(this.explicitRowCount)) {
+        dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("GridPlacement.rowEnd cannot exceed row count\n"), this.grid.toDiagnosticsNode({name: "grid"}), item.toDiagnosticsNode({name: "gridItem"})])));
+      }
+      for (let cell of this.getCellsInArea(area)) {
+        cell.occupants.add(item);
+      }
+      this.itemAreas[$_set](item, area);
+    }
+    toString() {
+      let cap = "┼" + "-"[$times](dart.notNull(this.explicitColumnCount) * 2 - 1) + "┼";
+      let rows = partition.partition(core.String, this[_cells][$map](core.String, dart.fn(c => {
+        let t1;
+        if (c == null) dart.nullFailed(I[0], 182, 25, "c");
+        return dart.test(c.isOccupied) ? (t1 = c.debugLabel, t1 == null ? "x" : t1) : " ";
+      }, T.GridCellToString())), this.explicitColumnCount)[$map](core.String, dart.fn(row => {
+        if (row == null) dart.nullFailed(I[0], 184, 15, "row");
+        return row[$join](",");
+      }, T.ListOfStringToString()));
+      return cap + "\n|" + dart.str(rows[$join]("|\n|")) + "|\n" + cap;
+    }
+  };
+  (placement$.PlacementGrid.new = function(opts) {
+    let grid = opts && 'grid' in opts ? opts.grid : null;
+    if (grid == null) dart.nullFailed(I[0], 107, 19, "grid");
+    this[itemAreas] = new (T.LinkedMapOfRenderBox$GridArea()).new();
+    this[__PlacementGrid__cells] = null;
+    this[__PlacementGrid__cells_isSet] = false;
+    this[grid$] = grid;
+    this[explicitColumnCount] = grid.columnSizes[$length];
+    this[explicitRowCount] = grid.rowSizes[$length];
+    this[_cells] = T.ListOfGridCell().generate(dart.notNull(this.explicitColumnCount) * dart.notNull(this.explicitRowCount), dart.fn(i => {
+      if (i == null) dart.nullFailed(I[0], 111, 50, "i");
+      return new placement$.GridCell.new(this, i);
+    }, T.intToGridCell()));
+  }).prototype = placement$.PlacementGrid.prototype;
+  dart.addTypeTests(placement$.PlacementGrid);
+  dart.addTypeCaches(placement$.PlacementGrid);
+  dart.setMethodSignature(placement$.PlacementGrid, () => ({
+    __proto__: dart.getMethods(placement$.PlacementGrid.__proto__),
+    getCellAt: dart.fnType(placement$.GridCell, [core.int, core.int]),
+    getCellsInTrack: dart.fnType(core.Iterable$(placement$.GridCell), [core.int, track_size.TrackType]),
+    getCellsInArea: dart.fnType(core.Iterable$(placement$.GridCell), [placement.GridArea]),
+    checkIsVacant: dart.fnType(core.bool, [placement.GridArea]),
+    createCursor: dart.fnType(placement$.PlacementGridCursor, [layout_grid.AutoPlacement]),
+    addItemToArea: dart.fnType(dart.void, [box.RenderBox, placement.GridArea])
+  }));
+  dart.setGetterSignature(placement$.PlacementGrid, () => ({
+    __proto__: dart.getGetters(placement$.PlacementGrid.__proto__),
+    [_cells]: core.List$(placement$.GridCell)
+  }));
+  dart.setSetterSignature(placement$.PlacementGrid, () => ({
+    __proto__: dart.getSetters(placement$.PlacementGrid.__proto__),
+    [_cells]: core.List$(placement$.GridCell)
+  }));
+  dart.setLibraryUri(placement$.PlacementGrid, I[1]);
+  dart.setFieldSignature(placement$.PlacementGrid, () => ({
+    __proto__: dart.getFields(placement$.PlacementGrid.__proto__),
+    grid: dart.finalFieldType(layout_grid$.RenderLayoutGrid),
+    explicitColumnCount: dart.finalFieldType(core.int),
+    explicitRowCount: dart.finalFieldType(core.int),
+    itemAreas: dart.fieldType(core.Map$(box.RenderBox, placement.GridArea)),
+    [__PlacementGrid__cells]: dart.fieldType(dart.nullable(core.List$(placement$.GridCell))),
+    [__PlacementGrid__cells_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(placement$.PlacementGrid, ['toString']);
+  var grid$0 = dart.privateName(placement$, "PlacementGridCursor.grid");
+  var autoPlacementMode$ = dart.privateName(placement$, "PlacementGridCursor.autoPlacementMode");
+  var currentColumn = dart.privateName(placement$, "PlacementGridCursor.currentColumn");
+  var currentRow = dart.privateName(placement$, "PlacementGridCursor.currentRow");
+  var fixedTrackIndex = dart.privateName(placement$, "PlacementGridCursor.fixedTrackIndex");
+  var fixedAxis = dart.privateName(placement$, "PlacementGridCursor.fixedAxis");
+  var _moveFixedToNext = dart.privateName(placement$, "_moveFixedToNext");
+  var _moveAutoToNext = dart.privateName(placement$, "_moveAutoToNext");
+  var _currentAreaForSpans = dart.privateName(placement$, "_currentAreaForSpans");
+  placement$.PlacementGridCursor = class PlacementGridCursor extends core.Object {
+    get grid() {
+      return this[grid$0];
+    }
+    set grid(value) {
+      super.grid = value;
+    }
+    get autoPlacementMode() {
+      return this[autoPlacementMode$];
+    }
+    set autoPlacementMode(value) {
+      super.autoPlacementMode = value;
+    }
+    get currentColumn() {
+      return this[currentColumn];
+    }
+    set currentColumn(value) {
+      this[currentColumn] = value;
+    }
+    get currentRow() {
+      return this[currentRow];
+    }
+    set currentRow(value) {
+      this[currentRow] = value;
+    }
+    get fixedTrackIndex() {
+      return this[fixedTrackIndex];
+    }
+    set fixedTrackIndex(value) {
+      this[fixedTrackIndex] = value;
+    }
+    get fixedAxis() {
+      return this[fixedAxis];
+    }
+    set fixedAxis(value) {
+      this[fixedAxis] = value;
+    }
+    get autoPlacementTraversalAxis() {
+      return dart.nullCheck(this.autoPlacementMode).trackType == track_size.TrackType.row ? basic_types.Axis.horizontal : basic_types.Axis.vertical;
+    }
+    currentIndexOnAxis(axis) {
+      return axis == basic_types.Axis.horizontal ? this.currentColumn : this.currentRow;
+    }
+    setCurrentIndexOnAxis(index, axis) {
+      if (axis == basic_types.Axis.vertical) {
+        this.currentRow = index;
+      } else {
+        this.currentColumn = index;
+      }
+    }
+    getAxisLength(axis) {
+      if (axis == null) dart.nullFailed(I[0], 223, 26, "axis");
+      return axis == basic_types.Axis.horizontal ? this.grid.explicitColumnCount : this.grid.explicitRowCount;
+    }
+    get isFixedToTrack() {
+      return this.fixedAxis != null;
+    }
+    get requiresMoveToFixedAxisIndex() {
+      return dart.test(this.isFixedToTrack) && this.currentIndexOnAxis(this.fixedAxis) != this.fixedTrackIndex;
+    }
+    fixToAxisIndex(fixedIndex, fixedAxis) {
+      if (fixedAxis == null) dart.nullFailed(I[0], 241, 45, "fixedAxis");
+      this.fixedTrackIndex = fixedIndex;
+      this.fixedAxis = fixedAxis;
+    }
+    unfixFromTrack() {
+      this.fixedTrackIndex = null;
+      this.fixedAxis = null;
+    }
+    moveToNextEmptyArea(columnSpan, rowSpan) {
+      let moveFn = null;
+      if (dart.test(this.isFixedToTrack)) {
+        moveFn = dart.bind(this, _moveFixedToNext);
+      } else {
+        if (dart.nullCheck(this.autoPlacementMode).packing == placement$0.AutoPlacementPacking.dense) {
+          this.currentColumn = -1;
+          this.currentRow = -1;
+        }
+        moveFn = dart.bind(this, _moveAutoToNext);
+      }
+      return moveFn(columnSpan, rowSpan)[$firstWhere](dart.bind(this.grid, 'checkIsVacant'));
+    }
+    [_moveFixedToNext](columnSpan, rowSpan) {
+      return new (T.SyncIterableOfGridArea()).new((function* _moveFixedToNext() {
+        let traversalAxis = basic_types.flipAxis(dart.nullCheck(this.fixedAxis));
+        let traversalAxisIndex = dart.fn(() => this.currentIndexOnAxis(traversalAxis), T.VoidTointN());
+        if (dart.test(this.requiresMoveToFixedAxisIndex)) {
+          if (this.currentColumn === -1 && this.currentRow === -1) {
+            this.setCurrentIndexOnAxis(0, traversalAxis);
+          } else {
+            let fixedAxisIndex = dart.nullCheck(this.currentIndexOnAxis(this.fixedAxis));
+            if (dart.nullCheck(this.fixedTrackIndex) < fixedAxisIndex) {
+              this.setCurrentIndexOnAxis(dart.nullCheck(traversalAxisIndex()) + 1, traversalAxis);
+            }
+          }
+          this.setCurrentIndexOnAxis(this.fixedTrackIndex, this.fixedAxis);
+          yield this[_currentAreaForSpans](dart.nullCheck(columnSpan), dart.nullCheck(rowSpan));
+        }
+        while (true) {
+          this.setCurrentIndexOnAxis(dart.nullCheck(traversalAxisIndex()) + 1, traversalAxis);
+          yield this[_currentAreaForSpans](dart.nullCheck(columnSpan), dart.nullCheck(rowSpan));
+        }
+      }).bind(this));
+    }
+    [_moveAutoToNext](columnSpan, rowSpan) {
+      return new (T.SyncIterableOfGridArea()).new((function* _moveAutoToNext() {
+        let fixedAxis = this.autoPlacementTraversalAxis;
+        let fixedAxisIndex = dart.fn(() => this.currentIndexOnAxis(fixedAxis), T.VoidTointN());
+        let growthAxis = basic_types.flipAxis(this.autoPlacementTraversalAxis);
+        let growthAxisIndex = dart.fn(() => this.currentIndexOnAxis(growthAxis), T.VoidTointN());
+        while (true) {
+          if (this.currentColumn === -1 && this.currentRow === -1) {
+            this.currentColumn = this.currentRow = 0;
+          } else if (dart.nullCheck(fixedAxisIndex()) + 1 === this.getAxisLength(fixedAxis)) {
+            this.setCurrentIndexOnAxis(0, fixedAxis);
+            this.setCurrentIndexOnAxis(dart.nullCheck(growthAxisIndex()) + 1, growthAxis);
+          } else {
+            this.setCurrentIndexOnAxis(dart.nullCheck(fixedAxisIndex()) + 1, fixedAxis);
+          }
+          yield this[_currentAreaForSpans](dart.nullCheck(columnSpan), dart.nullCheck(rowSpan));
+        }
+      }).bind(this));
+    }
+    [_currentAreaForSpans](columnSpan, rowSpan) {
+      if (columnSpan == null) dart.nullFailed(I[0], 315, 37, "columnSpan");
+      if (rowSpan == null) dart.nullFailed(I[0], 315, 53, "rowSpan");
+      return new placement.GridArea.withSpans({columnStart: dart.nullCheck(this.currentColumn), columnSpan: columnSpan, rowStart: dart.nullCheck(this.currentRow), rowSpan: rowSpan});
+    }
+  };
+  (placement$.PlacementGridCursor.new = function(grid, opts) {
+    if (grid == null) dart.nullFailed(I[0], 192, 10, "grid");
+    let autoPlacementMode = opts && 'autoPlacementMode' in opts ? opts.autoPlacementMode : null;
+    this[currentColumn] = -1;
+    this[currentRow] = -1;
+    this[fixedTrackIndex] = null;
+    this[fixedAxis] = null;
+    this[grid$0] = grid;
+    this[autoPlacementMode$] = autoPlacementMode;
+    ;
+  }).prototype = placement$.PlacementGridCursor.prototype;
+  dart.addTypeTests(placement$.PlacementGridCursor);
+  dart.addTypeCaches(placement$.PlacementGridCursor);
+  dart.setMethodSignature(placement$.PlacementGridCursor, () => ({
+    __proto__: dart.getMethods(placement$.PlacementGridCursor.__proto__),
+    currentIndexOnAxis: dart.fnType(dart.nullable(core.int), [dart.nullable(basic_types.Axis)]),
+    setCurrentIndexOnAxis: dart.fnType(dart.void, [dart.nullable(core.int), dart.nullable(basic_types.Axis)]),
+    getAxisLength: dart.fnType(core.int, [basic_types.Axis]),
+    fixToAxisIndex: dart.fnType(dart.void, [dart.nullable(core.int), basic_types.Axis]),
+    unfixFromTrack: dart.fnType(dart.void, []),
+    moveToNextEmptyArea: dart.fnType(placement.GridArea, [dart.nullable(core.int), dart.nullable(core.int)]),
+    [_moveFixedToNext]: dart.fnType(core.Iterable$(placement.GridArea), [dart.nullable(core.int), dart.nullable(core.int)]),
+    [_moveAutoToNext]: dart.fnType(core.Iterable$(placement.GridArea), [dart.nullable(core.int), dart.nullable(core.int)]),
+    [_currentAreaForSpans]: dart.fnType(placement.GridArea, [core.int, core.int])
+  }));
+  dart.setGetterSignature(placement$.PlacementGridCursor, () => ({
+    __proto__: dart.getGetters(placement$.PlacementGridCursor.__proto__),
+    autoPlacementTraversalAxis: basic_types.Axis,
+    isFixedToTrack: core.bool,
+    requiresMoveToFixedAxisIndex: core.bool
+  }));
+  dart.setLibraryUri(placement$.PlacementGridCursor, I[1]);
+  dart.setFieldSignature(placement$.PlacementGridCursor, () => ({
+    __proto__: dart.getFields(placement$.PlacementGridCursor.__proto__),
+    grid: dart.finalFieldType(placement$.PlacementGrid),
+    autoPlacementMode: dart.finalFieldType(dart.nullable(layout_grid.AutoPlacement)),
+    currentColumn: dart.fieldType(dart.nullable(core.int)),
+    currentRow: dart.fieldType(dart.nullable(core.int)),
+    fixedTrackIndex: dart.fieldType(dart.nullable(core.int)),
+    fixedAxis: dart.fieldType(dart.nullable(basic_types.Axis))
+  }));
+  var grid$1 = dart.privateName(placement$, "GridCell.grid");
+  var index$ = dart.privateName(placement$, "GridCell.index");
+  var occupants = dart.privateName(placement$, "GridCell.occupants");
+  placement$.GridCell = class GridCell extends core.Object {
+    get grid() {
+      return this[grid$1];
+    }
+    set grid(value) {
+      super.grid = value;
+    }
+    get index() {
+      return this[index$];
+    }
+    set index(value) {
+      super.index = value;
+    }
+    get occupants() {
+      return this[occupants];
+    }
+    set occupants(value) {
+      super.occupants = value;
+    }
+    get column() {
+      return this.index[$modulo](this.grid.explicitColumnCount);
+    }
+    get row() {
+      return (dart.notNull(this.index) / dart.notNull(this.grid.explicitColumnCount))[$truncate]();
+    }
+    get isOccupied() {
+      return this.occupants[$isNotEmpty];
+    }
+    get isVacant() {
+      return !dart.test(this.isOccupied);
+    }
+    get debugLabel() {
+      return dart.test(this.occupants[$isNotEmpty]) ? layout_grid$.GridParentData.as(this.occupants[$first].parentData).debugLabel : null;
+    }
+    nextCellsAlongAxis(axis) {
+      if (axis == null) dart.nullFailed(I[0], 343, 46, "axis");
+      return new (T.SyncIterableOfGridCell()).new((function* nextCellsAlongAxis() {
+        let next = axis == basic_types.Axis.horizontal ? this.nextInRow : this.nextInColumn;
+        if (next != null) {
+          yield next;
+          yield* next.nextCellsAlongAxis(axis);
+        }
+      }).bind(this));
+    }
+    get nextInRow() {
+      let column = (dart.notNull(this.index) + 1)[$modulo](this.grid.explicitColumnCount);
+      return column === 0 ? null : this.grid[_cells][$_get](dart.notNull(this.index) + 1);
+    }
+    get nextInColumn() {
+      let i = dart.notNull(this.index) + dart.notNull(this.grid.explicitColumnCount);
+      return i >= dart.notNull(this.grid[_cells][$length]) ? null : this.grid[_cells][$_get](i);
+    }
+    toString() {
+      return "GridCell(" + dart.str(this.column) + ", " + dart.str(this.row) + ", isOccupied=" + dart.str(this.isOccupied) + ")";
+    }
+  };
+  (placement$.GridCell.new = function(grid, index) {
+    if (grid == null) dart.nullFailed(I[0], 327, 17, "grid");
+    if (index == null) dart.nullFailed(I[0], 327, 28, "index");
+    this[occupants] = T.LinkedHashSetOfRenderBox().new();
+    this[grid$1] = grid;
+    this[index$] = index;
+    ;
+  }).prototype = placement$.GridCell.prototype;
+  dart.addTypeTests(placement$.GridCell);
+  dart.addTypeCaches(placement$.GridCell);
+  dart.setMethodSignature(placement$.GridCell, () => ({
+    __proto__: dart.getMethods(placement$.GridCell.__proto__),
+    nextCellsAlongAxis: dart.fnType(core.Iterable$(placement$.GridCell), [basic_types.Axis])
+  }));
+  dart.setGetterSignature(placement$.GridCell, () => ({
+    __proto__: dart.getGetters(placement$.GridCell.__proto__),
+    column: core.int,
+    row: core.int,
+    isOccupied: core.bool,
+    isVacant: core.bool,
+    debugLabel: dart.nullable(core.String),
+    nextInRow: dart.nullable(placement$.GridCell),
+    nextInColumn: dart.nullable(placement$.GridCell)
+  }));
+  dart.setLibraryUri(placement$.GridCell, I[1]);
+  dart.setFieldSignature(placement$.GridCell, () => ({
+    __proto__: dart.getFields(placement$.GridCell.__proto__),
+    grid: dart.finalFieldType(placement$.PlacementGrid),
+    index: dart.finalFieldType(core.int),
+    occupants: dart.finalFieldType(core.Set$(box.RenderBox))
+  }));
+  dart.defineExtensionMethods(placement$.GridCell, ['toString']);
+  placement$.computeItemPlacement = function computeItemPlacement(grid) {
+    let t1;
+    if (grid == null) dart.nullFailed(I[0], 11, 53, "grid");
+    let autoPlacement = grid.autoPlacement;
+    let occupancy = new placement$.PlacementGrid.new({grid: grid});
+    let growthAxis = autoPlacement.trackType == track_size.TrackType.row ? basic_types.Axis.vertical : basic_types.Axis.horizontal;
+    let fixedAxis = basic_types.flipAxis(growthAxis);
+    let fullyPlacedChildren = T.JSArrayOfRenderBox().of([]);
+    let flowAxisPlacedChildren = T.JSArrayOfRenderBox().of([]);
+    let toPlaceChildren = T.JSArrayOfRenderBox().of([]);
+    let child = grid.firstChild;
+    while (child != null) {
+      let childParentData = layout_grid$.GridParentData.as(child.parentData);
+      if (childParentData.areaName != null) {
+        placement$._resolveChildNamedArea(childParentData, grid);
+      }
+      if (dart.test(childParentData.isDefinitelyPlaced)) {
+        fullyPlacedChildren[$add](child);
+      } else if (dart.test(childParentData.isDefinitelyPlacedOnAxis(growthAxis))) {
+        flowAxisPlacedChildren[$add](child);
+      } else if (dart.test(childParentData.isPlaced)) {
+        toPlaceChildren[$add](child);
+      }
+      child = childParentData.nextSibling;
+    }
+    for (let child of fullyPlacedChildren) {
+      let childParentData = layout_grid$.GridParentData.as(child.parentData);
+      occupancy.addItemToArea(child, childParentData.area);
+    }
+    for (let child of flowAxisPlacedChildren) {
+      let childParentData = layout_grid$.GridParentData.as(child.parentData);
+      let cursor = (t1 = occupancy.createCursor(autoPlacement), (() => {
+        t1.fixToAxisIndex(childParentData.startForAxis(growthAxis), growthAxis);
+        return t1;
+      })());
+      let area = cursor.moveToNextEmptyArea(childParentData.columnSpan, childParentData.rowSpan);
+      occupancy.addItemToArea(child, area);
+    }
+    let autoFlowCursor = occupancy.createCursor(autoPlacement);
+    for (let child of toPlaceChildren) {
+      let childParentData = layout_grid$.GridParentData.as(child.parentData);
+      if (dart.test(childParentData.isDefinitelyPlacedOnAxis(fixedAxis))) {
+        autoFlowCursor.fixToAxisIndex(childParentData.startForAxis(fixedAxis), growthAxis);
+      } else {
+        autoFlowCursor.unfixFromTrack();
+      }
+      let area = autoFlowCursor.moveToNextEmptyArea(childParentData.columnSpan, childParentData.rowSpan);
+      occupancy.addItemToArea(child, area);
+    }
+    return occupancy;
+  };
+  placement$._resolveChildNamedArea = function _resolveChildNamedArea(childParentData, grid) {
+    if (childParentData == null) dart.nullFailed(I[0], 89, 18, "childParentData");
+    if (grid == null) dart.nullFailed(I[0], 90, 20, "grid");
+    childParentData.area = grid.areas != null ? dart.nullCheck(grid.areas)._get(childParentData.areaName) : null;
+  };
+  debug.debugTrackIndicesString = function debugTrackIndicesString(tracks, opts) {
+    if (tracks == null) dart.nullFailed(I[2], 13, 52, "tracks");
+    let trackPrefix = opts && 'trackPrefix' in opts ? opts.trackPrefix : false;
+    if (trackPrefix == null) dart.nullFailed(I[2], 14, 11, "trackPrefix");
+    let trackIndices = debug.debugPrettyIndices(tracks[$map](core.int, dart.fn(t => {
+      if (t == null) dart.nullFailed(I[2], 15, 55, "t");
+      return t.index;
+    }, T.GridTrackToint())));
+    return dart.test(tracks[$isEmpty]) ? trackIndices : tracks[$length] === 1 ? "track " + dart.str(trackIndices) : "tracks " + dart.str(trackIndices);
+  };
+  debug.debugPrettyIndices = function debugPrettyIndices(indices) {
+    if (indices == null) dart.nullFailed(I[2], 24, 41, "indices");
+    return dart.test(indices[$isEmpty]) ? "(none)" : dart.notNull(indices[$length]) > 1 ? "[" + dart.str(indices[$join](",")) + "]" : dart.str(indices[$first]);
+  };
+  dart.defineLazy(debug, {
+    /*debug.debugPrintGridLayout*/get debugPrintGridLayout() {
+      return false;
+    },
+    set debugPrintGridLayout(_) {},
+    /*debug.debugPrintUnplacedChildren*/get debugPrintUnplacedChildren() {
+      return false;
+    },
+    set debugPrintUnplacedChildren(_) {}
+  }, false);
+  var trackType$ = dart.privateName(layout_grid, "AutoPlacement.trackType");
+  var packing$ = dart.privateName(layout_grid, "AutoPlacement.packing");
+  var _name$ = dart.privateName(placement$0, "_name");
+  var _name = dart.privateName(track_size, "_name");
+  layout_grid.AutoPlacement = class AutoPlacement extends core.Object {
+    get trackType() {
+      return this[trackType$];
+    }
+    set trackType(value) {
+      super.trackType = value;
+    }
+    get packing() {
+      return this[packing$];
+    }
+    set packing(value) {
+      super.packing = value;
+    }
+    toString() {
+      switch (this) {
+        case C[0] || CT.C0:
+        {
+          return "AutoPlacement.rowSparse";
+        }
+        case C[3] || CT.C3:
+        {
+          return "AutoPlacement.rowDense";
+        }
+        case C[5] || CT.C5:
+        {
+          return "AutoPlacement.columnSparse";
+        }
+        case C[7] || CT.C7:
+        {
+          return "AutoPlacement.columnDense";
+        }
+      }
+      dart.throw(new core.StateError.new("toString() called on unknown AutoPlacement"));
+    }
+  };
+  (layout_grid.AutoPlacement.__ = function(trackType, packing) {
+    if (trackType == null) dart.nullFailed(I[3], 39, 30, "trackType");
+    if (packing == null) dart.nullFailed(I[3], 39, 46, "packing");
+    this[trackType$] = trackType;
+    this[packing$] = packing;
+    ;
+  }).prototype = layout_grid.AutoPlacement.prototype;
+  dart.addTypeTests(layout_grid.AutoPlacement);
+  dart.addTypeCaches(layout_grid.AutoPlacement);
+  dart.setLibraryUri(layout_grid.AutoPlacement, I[4]);
+  dart.setFieldSignature(layout_grid.AutoPlacement, () => ({
+    __proto__: dart.getFields(layout_grid.AutoPlacement.__proto__),
+    trackType: dart.finalFieldType(track_size.TrackType),
+    packing: dart.finalFieldType(placement$0.AutoPlacementPacking)
+  }));
+  dart.defineExtensionMethods(layout_grid.AutoPlacement, ['toString']);
+  dart.defineLazy(layout_grid.AutoPlacement, {
+    /*layout_grid.AutoPlacement.rowSparse*/get rowSparse() {
+      return C[0] || CT.C0;
+    },
+    /*layout_grid.AutoPlacement.rowDense*/get rowDense() {
+      return C[3] || CT.C3;
+    },
+    /*layout_grid.AutoPlacement.columnSparse*/get columnSparse() {
+      return C[5] || CT.C5;
+    },
+    /*layout_grid.AutoPlacement.columnDense*/get columnDense() {
+      return C[7] || CT.C7;
+    },
+    /*layout_grid.AutoPlacement.values*/get values() {
+      return C[8] || CT.C8;
+    }
+  }, false);
+  var _name$0 = dart.privateName(layout_grid, "_name");
+  layout_grid.GridFit = class GridFit extends core.Object {
+    toString() {
+      return this[_name$0];
+    }
+  };
+  (layout_grid.GridFit.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[3], 68, 6, "index");
+    if (_name == null) dart.nullFailed(I[3], 68, 6, "_name");
+    this.index = index;
+    this[_name$0] = _name;
+    ;
+  }).prototype = layout_grid.GridFit.prototype;
+  dart.addTypeTests(layout_grid.GridFit);
+  dart.addTypeCaches(layout_grid.GridFit);
+  dart.setLibraryUri(layout_grid.GridFit, I[4]);
+  dart.setFieldSignature(layout_grid.GridFit, () => ({
+    __proto__: dart.getFields(layout_grid.GridFit.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$0]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(layout_grid.GridFit, ['toString']);
+  layout_grid.GridFit.expand = C[9] || CT.C9;
+  layout_grid.GridFit.loose = C[10] || CT.C10;
+  layout_grid.GridFit.passthrough = C[11] || CT.C11;
+  layout_grid.GridFit.values = C[12] || CT.C12;
+  var autoPlacement$ = dart.privateName(layout_grid, "LayoutGrid.autoPlacement");
+  var gridFit$ = dart.privateName(layout_grid, "LayoutGrid.gridFit");
+  var areas$ = dart.privateName(layout_grid, "LayoutGrid.areas");
+  var columnSizes$ = dart.privateName(layout_grid, "LayoutGrid.columnSizes");
+  var rowSizes$ = dart.privateName(layout_grid, "LayoutGrid.rowSizes");
+  var columnGap$ = dart.privateName(layout_grid, "LayoutGrid.columnGap");
+  var rowGap$ = dart.privateName(layout_grid, "LayoutGrid.rowGap");
+  var textDirection$ = dart.privateName(layout_grid, "LayoutGrid.textDirection");
+  layout_grid.LayoutGrid = class LayoutGrid extends framework.MultiChildRenderObjectWidget {
+    get autoPlacement() {
+      return this[autoPlacement$];
+    }
+    set autoPlacement(value) {
+      super.autoPlacement = value;
+    }
+    get gridFit() {
+      return this[gridFit$];
+    }
+    set gridFit(value) {
+      super.gridFit = value;
+    }
+    get areas() {
+      return this[areas$];
+    }
+    set areas(value) {
+      super.areas = value;
+    }
+    get columnSizes() {
+      return this[columnSizes$];
+    }
+    set columnSizes(value) {
+      super.columnSizes = value;
+    }
+    get rowSizes() {
+      return this[rowSizes$];
+    }
+    set rowSizes(value) {
+      super.rowSizes = value;
+    }
+    get columnGap() {
+      return this[columnGap$];
+    }
+    set columnGap(value) {
+      super.columnGap = value;
+    }
+    get rowGap() {
+      return this[rowGap$];
+    }
+    set rowGap(value) {
+      super.rowGap = value;
+    }
+    get textDirection() {
+      return this[textDirection$];
+    }
+    set textDirection(value) {
+      super.textDirection = value;
+    }
+    createRenderObject(context) {
+      let t1;
+      if (context == null) dart.nullFailed(I[3], 170, 52, "context");
+      return new layout_grid$.RenderLayoutGrid.new({autoPlacement: this.autoPlacement, gridFit: this.gridFit, areasSpec: this.areas, columnSizes: this.columnSizes, rowSizes: this.rowSizes, columnGap: this.columnGap, rowGap: this.rowGap, textDirection: (t1 = this.textDirection, t1 == null ? basic.Directionality.of(context) : t1)});
+    }
+    updateRenderObject(context, renderObject) {
+      let t2, t1;
+      if (context == null) dart.nullFailed(I[3], 184, 40, "context");
+      layout_grid$.RenderLayoutGrid.as(renderObject);
+      if (renderObject == null) dart.nullFailed(I[3], 184, 66, "renderObject");
+      t1 = renderObject;
+      (() => {
+        t1.autoPlacement = this.autoPlacement;
+        t1.gridFit = this.gridFit;
+        t1.areasSpec = this.areas;
+        t1.columnSizes = this.columnSizes;
+        t1.rowSizes = this.rowSizes;
+        t1.columnGap = this.columnGap;
+        t1.rowGap = this.rowGap;
+        t1.textDirection = (t2 = this.textDirection, t2 == null ? basic.Directionality.of(context) : t2);
+        return t1;
+      })();
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[3], 197, 56, "properties");
+      super.debugFillProperties(properties);
+      properties.add(new (T.IterablePropertyOfTrackSize()).new("columnSizes", this.columnSizes));
+      properties.add(new (T.IterablePropertyOfTrackSize()).new("rowSizes", this.rowSizes));
+      properties.add(new (T.EnumPropertyOfAutoPlacement()).new("autoPlacement", this.autoPlacement));
+      properties.add(new (T.EnumPropertyOfGridFit()).new("gridFit", this.gridFit));
+      properties.add(new diagnostics.DoubleProperty.new("columnGap", this.columnGap));
+      properties.add(new diagnostics.DoubleProperty.new("rowGap", this.rowGap));
+      if (this.textDirection != null) {
+        properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection));
+      }
+    }
+  };
+  (layout_grid.LayoutGrid.new = function(opts) {
+    let t1, t1$;
+    let key = opts && 'key' in opts ? opts.key : null;
+    let autoPlacement = opts && 'autoPlacement' in opts ? opts.autoPlacement : C[0] || CT.C0;
+    if (autoPlacement == null) dart.nullFailed(I[3], 99, 10, "autoPlacement");
+    let gridFit = opts && 'gridFit' in opts ? opts.gridFit : C[9] || CT.C9;
+    if (gridFit == null) dart.nullFailed(I[3], 100, 10, "gridFit");
+    let areas = opts && 'areas' in opts ? opts.areas : null;
+    let columnSizes = opts && 'columnSizes' in opts ? opts.columnSizes : null;
+    if (columnSizes == null) dart.nullFailed(I[3], 102, 19, "columnSizes");
+    let rowSizes = opts && 'rowSizes' in opts ? opts.rowSizes : null;
+    if (rowSizes == null) dart.nullFailed(I[3], 103, 19, "rowSizes");
+    let rowGap = opts && 'rowGap' in opts ? opts.rowGap : null;
+    let columnGap = opts && 'columnGap' in opts ? opts.columnGap : null;
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let children = opts && 'children' in opts ? opts.children : C[13] || CT.C13;
+    if (children == null) dart.nullFailed(I[3], 107, 18, "children");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[autoPlacement$] = autoPlacement;
+    this[gridFit$] = gridFit;
+    this[areas$] = areas;
+    this[columnSizes$] = columnSizes;
+    this[rowSizes$] = rowSizes;
+    this[textDirection$] = textDirection;
+    this[rowGap$] = (t1 = rowGap, t1 == null ? 0.0 : t1);
+    this[columnGap$] = (t1$ = columnGap, t1$ == null ? 0.0 : t1$);
+    layout_grid.LayoutGrid.__proto__.new.call(this, {key: key, children: children, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    if (!dart.test(this.columnSizes[$isNotEmpty])) dart.assertFailed(null, I[3], 111, 12, "columnSizes.isNotEmpty");
+    if (!dart.test(this.rowSizes[$isNotEmpty])) dart.assertFailed(null, I[3], 112, 12, "rowSizes.isNotEmpty");
+    if (!dart.test(dart.fn(() => {
+      if (this.areas == null) return true;
+      let parsedAreas = placement.parseNamedAreasSpec(dart.nullCheck(this.areas));
+      return parsedAreas.columnCount == this.columnSizes[$length] && parsedAreas.rowCount == this.rowSizes[$length];
+    }, T.VoidTobool())())) dart.assertFailed(null, I[3], 113, 12, "() {\n      if (areas == null) return true;\n      final parsedAreas = parseNamedAreasSpec(areas!);\n      return parsedAreas.columnCount == columnSizes.length &&\n          parsedAreas.rowCount == rowSizes.length;\n    }()");
+  }).prototype = layout_grid.LayoutGrid.prototype;
+  dart.addTypeTests(layout_grid.LayoutGrid);
+  dart.addTypeCaches(layout_grid.LayoutGrid);
+  dart.setMethodSignature(layout_grid.LayoutGrid, () => ({
+    __proto__: dart.getMethods(layout_grid.LayoutGrid.__proto__),
+    createRenderObject: dart.fnType(layout_grid$.RenderLayoutGrid, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(layout_grid.LayoutGrid, I[4]);
+  dart.setFieldSignature(layout_grid.LayoutGrid, () => ({
+    __proto__: dart.getFields(layout_grid.LayoutGrid.__proto__),
+    autoPlacement: dart.finalFieldType(layout_grid.AutoPlacement),
+    gridFit: dart.finalFieldType(layout_grid.GridFit),
+    areas: dart.finalFieldType(dart.nullable(core.String)),
+    columnSizes: dart.finalFieldType(core.List$(track_size.TrackSize)),
+    rowSizes: dart.finalFieldType(core.List$(track_size.TrackSize)),
+    columnGap: dart.finalFieldType(core.double),
+    rowGap: dart.finalFieldType(core.double),
+    textDirection: dart.finalFieldType(dart.nullable(ui.TextDirection))
+  }));
+  box$['LayoutGridExtensionsForBoxConstraints|get#unbound'] = function LayoutGridExtensionsForBoxConstraints$124get$35unbound($this) {
+    if ($this == null) dart.nullFailed(I[5], 6, 22, "#this");
+    return $this.copyWith({maxWidth: 1 / 0, maxHeight: 1 / 0});
+  };
+  box$['LayoutGridExtensionsForBoxConstraints|constraintsForGridFit'] = function LayoutGridExtensionsForBoxConstraints$124constraintsForGridFit($this, gridFit) {
+    if ($this == null) dart.nullFailed(I[5], 11, 18, "#this");
+    if (gridFit == null) dart.nullFailed(I[5], 11, 48, "gridFit");
+    switch (gridFit) {
+      case C[9] || CT.C9:
+      {
+        let upperBound = $this.biggest;
+        return new box.BoxConstraints.tightForFinite({width: upperBound.width, height: upperBound.height});
+      }
+      case C[10] || CT.C10:
+      {
+        return $this.loosen();
+      }
+      case C[11] || CT.C11:
+      {
+        return $this;
+      }
+      default:
+      {
+        dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+      }
+    }
+  };
+  box$['LayoutGridExtensionsForBoxConstraints|get#constraintsForGridFit'] = function LayoutGridExtensionsForBoxConstraints$124get$35constraintsForGridFit($this) {
+    if ($this == null) dart.nullFailed(I[5], 11, 18, "#this");
+    return dart.fn(gridFit => {
+      if (gridFit == null) dart.nullFailed(I[5], 11, 48, "gridFit");
+      return box$['LayoutGridExtensionsForBoxConstraints|constraintsForGridFit']($this, gridFit);
+    }, T.GridFitToBoxConstraints());
+  };
+  var columnStart$ = dart.privateName(layout_grid$, "GridParentData.columnStart");
+  var columnSpan$ = dart.privateName(layout_grid$, "GridParentData.columnSpan");
+  var rowStart$ = dart.privateName(layout_grid$, "GridParentData.rowStart");
+  var rowSpan$ = dart.privateName(layout_grid$, "GridParentData.rowSpan");
+  var debugLabel$ = dart.privateName(layout_grid$, "GridParentData.debugLabel");
+  var _areaName = dart.privateName(layout_grid$, "_areaName");
+  layout_grid$.GridParentData = class GridParentData extends box.ContainerBoxParentData$(box.RenderBox) {
+    get columnStart() {
+      return this[columnStart$];
+    }
+    set columnStart(value) {
+      this[columnStart$] = value;
+    }
+    get columnSpan() {
+      return this[columnSpan$];
+    }
+    set columnSpan(value) {
+      this[columnSpan$] = value;
+    }
+    get rowStart() {
+      return this[rowStart$];
+    }
+    set rowStart(value) {
+      this[rowStart$] = value;
+    }
+    get rowSpan() {
+      return this[rowSpan$];
+    }
+    set rowSpan(value) {
+      this[rowSpan$] = value;
+    }
+    get debugLabel() {
+      return this[debugLabel$];
+    }
+    set debugLabel(value) {
+      this[debugLabel$] = value;
+    }
+    get areaName() {
+      return this[_areaName];
+    }
+    set areaName(value) {
+      if (value == this[_areaName]) {
+        return;
+      }
+      this[_areaName] = value;
+      this.columnStart = this.rowStart = null;
+      if (value != null) {
+        this.columnSpan = this.rowSpan = null;
+      } else {
+        this.columnSpan = this.rowSpan = 1;
+      }
+    }
+    startForAxis(axis) {
+      if (axis == null) dart.nullFailed(I[6], 59, 26, "axis");
+      return axis == basic_types.Axis.horizontal ? this.columnStart : this.rowStart;
+    }
+    spanForAxis(axis) {
+      if (axis == null) dart.nullFailed(I[6], 62, 25, "axis");
+      return axis == basic_types.Axis.horizontal ? this.columnSpan : this.rowSpan;
+    }
+    get area() {
+      if (!dart.test(this.isDefinitelyPlaced)) dart.assertFailed(null, I[6], 66, 12, "isDefinitelyPlaced");
+      return new placement.GridArea.new({name: this.areaName, columnStart: dart.nullCheck(this.columnStart), columnEnd: dart.nullCheck(this.columnStart) + dart.nullCheck(this.columnSpan), rowStart: dart.nullCheck(this.rowStart), rowEnd: dart.nullCheck(this.rowStart) + dart.nullCheck(this.rowSpan)});
+    }
+    set area(value) {
+      if (value == null) {
+        this.columnStart = this.columnSpan = this.rowStart = this.rowSpan = null;
+      } else {
+        this.columnStart = value.columnStart;
+        this.columnSpan = value.columnSpan;
+        this.rowStart = value.rowStart;
+        this.rowSpan = value.rowSpan;
+      }
+    }
+    get isPlaced() {
+      return !dart.test(this.isNotPlaced);
+    }
+    get isNotPlaced() {
+      return this.columnStart == null && this.columnSpan == null && this.rowStart == null && this.rowSpan == null;
+    }
+    get isDefinitelyPlaced() {
+      return this.columnStart != null && this.rowStart != null;
+    }
+    isDefinitelyPlacedOnAxis(axis) {
+      if (axis == null) dart.nullFailed(I[6], 106, 38, "axis");
+      return axis == basic_types.Axis.horizontal ? this.columnStart != null : this.rowStart != null;
+    }
+    toString() {
+      let values = (() => {
+        let t4 = T.JSArrayOfString().of([]);
+        if (this.areaName != null) t4[$add]("areaName=" + dart.str(this.areaName));
+        if (this.columnStart != null) t4[$add]("columnStart=" + dart.str(this.columnStart));
+        if (this.columnSpan != null) t4[$add]("columnSpan=" + dart.str(this.columnSpan));
+        if (this.rowStart != null) t4[$add]("rowStart=" + dart.str(this.rowStart));
+        if (this.rowSpan != null) t4[$add]("rowSpan=" + dart.str(this.rowSpan));
+        if (this.debugLabel != null) t4[$add]("debugLabel=" + dart.str(this.debugLabel));
+        return t4;
+      })();
+      values[$add](super.toString());
+      return values[$join]("; ");
+    }
+  };
+  (layout_grid$.GridParentData.new = function(opts) {
+    let columnStart = opts && 'columnStart' in opts ? opts.columnStart : null;
+    let columnSpan = opts && 'columnSpan' in opts ? opts.columnSpan : 1;
+    let rowStart = opts && 'rowStart' in opts ? opts.rowStart : null;
+    let rowSpan = opts && 'rowSpan' in opts ? opts.rowSpan : 1;
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    this[_areaName] = null;
+    this[columnStart$] = columnStart;
+    this[columnSpan$] = columnSpan;
+    this[rowStart$] = rowStart;
+    this[rowSpan$] = rowSpan;
+    this[debugLabel$] = debugLabel;
+    layout_grid$.GridParentData.__proto__.new.call(this);
+    ;
+  }).prototype = layout_grid$.GridParentData.prototype;
+  dart.addTypeTests(layout_grid$.GridParentData);
+  dart.addTypeCaches(layout_grid$.GridParentData);
+  dart.setMethodSignature(layout_grid$.GridParentData, () => ({
+    __proto__: dart.getMethods(layout_grid$.GridParentData.__proto__),
+    startForAxis: dart.fnType(dart.nullable(core.int), [basic_types.Axis]),
+    spanForAxis: dart.fnType(dart.nullable(core.int), [basic_types.Axis]),
+    isDefinitelyPlacedOnAxis: dart.fnType(core.bool, [basic_types.Axis])
+  }));
+  dart.setGetterSignature(layout_grid$.GridParentData, () => ({
+    __proto__: dart.getGetters(layout_grid$.GridParentData.__proto__),
+    areaName: dart.nullable(core.String),
+    area: placement.GridArea,
+    isPlaced: core.bool,
+    isNotPlaced: core.bool,
+    isDefinitelyPlaced: core.bool
+  }));
+  dart.setSetterSignature(layout_grid$.GridParentData, () => ({
+    __proto__: dart.getSetters(layout_grid$.GridParentData.__proto__),
+    areaName: dart.nullable(core.String),
+    area: dart.nullable(placement.GridArea)
+  }));
+  dart.setLibraryUri(layout_grid$.GridParentData, I[7]);
+  dart.setFieldSignature(layout_grid$.GridParentData, () => ({
+    __proto__: dart.getFields(layout_grid$.GridParentData.__proto__),
+    columnStart: dart.fieldType(dart.nullable(core.int)),
+    columnSpan: dart.fieldType(dart.nullable(core.int)),
+    rowStart: dart.fieldType(dart.nullable(core.int)),
+    rowSpan: dart.fieldType(dart.nullable(core.int)),
+    [_areaName]: dart.fieldType(dart.nullable(core.String)),
+    debugLabel: dart.fieldType(dart.nullable(core.String))
+  }));
+  dart.defineExtensionMethods(layout_grid$.GridParentData, ['toString']);
+  var needsPlacement = dart.privateName(layout_grid$, "RenderLayoutGrid.needsPlacement");
+  var __RenderLayoutGrid__placementGrid = dart.privateName(layout_grid$, "_#RenderLayoutGrid#_placementGrid");
+  var __RenderLayoutGrid__placementGrid_isSet = dart.privateName(layout_grid$, "_#RenderLayoutGrid#_placementGrid#isSet");
+  var __RenderLayoutGrid_lastGridSizing = dart.privateName(layout_grid$, "_#RenderLayoutGrid#lastGridSizing");
+  var __RenderLayoutGrid_lastGridSizing_isSet = dart.privateName(layout_grid$, "_#RenderLayoutGrid#lastGridSizing#isSet");
+  var __RenderLayoutGrid__debugChildRect = dart.privateName(layout_grid$, "_#RenderLayoutGrid#_debugChildRect");
+  var __RenderLayoutGrid__debugChildRect_isSet = dart.privateName(layout_grid$, "_#RenderLayoutGrid#_debugChildRect#isSet");
+  var _autoPlacementMode = dart.privateName(layout_grid$, "_autoPlacementMode");
+  var _gridFit = dart.privateName(layout_grid$, "_gridFit");
+  var _columnSizes = dart.privateName(layout_grid$, "_columnSizes");
+  var _rowSizes = dart.privateName(layout_grid$, "_rowSizes");
+  var _areasSpec = dart.privateName(layout_grid$, "_areasSpec");
+  var _areas = dart.privateName(layout_grid$, "_areas");
+  var _columnGap = dart.privateName(layout_grid$, "_columnGap");
+  var _rowGap = dart.privateName(layout_grid$, "_rowGap");
+  var _textDirection = dart.privateName(layout_grid$, "_textDirection");
+  var _placementGrid = dart.privateName(layout_grid$, "_placementGrid");
+  var _debugChildRect = dart.privateName(layout_grid$, "_debugChildRect");
+  var _computeIntrinsicSize = dart.privateName(layout_grid$, "_computeIntrinsicSize");
+  var _performTrackSizing = dart.privateName(layout_grid$, "_performTrackSizing");
+  var _stretchIntrinsicTracks = dart.privateName(layout_grid$, "_stretchIntrinsicTracks");
+  var _performTrackSizingInternal = dart.privateName(layout_grid$, "_performTrackSizingInternal");
+  var _resolveIntrinsicTrackSizes = dart.privateName(layout_grid$, "_resolveIntrinsicTrackSizes");
+  var _distributeFreeSpace = dart.privateName(layout_grid$, "_distributeFreeSpace");
+  var _findFlexFactorUnitSize = dart.privateName(layout_grid$, "_findFlexFactorUnitSize");
+  var _distributeCalculatedSpaceToSpannedTracks = dart.privateName(layout_grid$, "_distributeCalculatedSpaceToSpannedTracks");
+  var Color_value = dart.privateName(ui, "Color.value");
+  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
+  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
+    object.ContainerRenderObjectMixin$(box.RenderBox, layout_grid$.GridParentData)[dart.mixinNew].call(this);
+    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
+  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, layout_grid$.GridParentData));
+  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
+  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
+    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, layout_grid$.GridParentData));
+  const RenderBox_DebugOverflowIndicatorMixin$36 = class RenderBox_DebugOverflowIndicatorMixin extends RenderBox_RenderBoxContainerDefaultsMixin$36 {};
+  (RenderBox_DebugOverflowIndicatorMixin$36.new = function() {
+    debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.mixinNew].call(this);
+    RenderBox_DebugOverflowIndicatorMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_DebugOverflowIndicatorMixin$36.prototype;
+  dart.applyMixin(RenderBox_DebugOverflowIndicatorMixin$36, debug_overflow_indicator.DebugOverflowIndicatorMixin);
+  layout_grid$.RenderLayoutGrid = class RenderLayoutGrid extends RenderBox_DebugOverflowIndicatorMixin$36 {
+    get needsPlacement() {
+      return this[needsPlacement];
+    }
+    set needsPlacement(value) {
+      this[needsPlacement] = value;
+    }
+    set [_placementGrid](t5) {
+      if (t5 == null) dart.nullFailed(I[6], 160, 22, "null");
+      this[__RenderLayoutGrid__placementGrid_isSet] = true;
+      this[__RenderLayoutGrid__placementGrid] = t5;
+    }
+    get [_placementGrid]() {
+      let t6;
+      return dart.test(this[__RenderLayoutGrid__placementGrid_isSet]) ? (t6 = this[__RenderLayoutGrid__placementGrid], t6) : dart.throw(new _internal.LateError.fieldNI("_placementGrid"));
+    }
+    get lastGridSizing() {
+      let t6;
+      return dart.test(this[__RenderLayoutGrid_lastGridSizing_isSet]) ? (t6 = this[__RenderLayoutGrid_lastGridSizing], t6) : dart.throw(new _internal.LateError.fieldNI("lastGridSizing"));
+    }
+    set lastGridSizing(t6) {
+      if (t6 == null) dart.nullFailed(I[6], 164, 23, "null");
+      this[__RenderLayoutGrid_lastGridSizing_isSet] = true;
+      this[__RenderLayoutGrid_lastGridSizing] = t6;
+    }
+    get [_debugChildRect]() {
+      let t7;
+      return dart.test(this[__RenderLayoutGrid__debugChildRect_isSet]) ? (t7 = this[__RenderLayoutGrid__debugChildRect], t7) : dart.throw(new _internal.LateError.fieldNI("_debugChildRect"));
+    }
+    set [_debugChildRect](t7) {
+      if (t7 == null) dart.nullFailed(I[6], 168, 13, "null");
+      this[__RenderLayoutGrid__debugChildRect_isSet] = true;
+      this[__RenderLayoutGrid__debugChildRect] = t7;
+    }
+    get autoPlacement() {
+      return this[_autoPlacementMode];
+    }
+    set autoPlacement(value) {
+      if (value == null) dart.nullFailed(I[6], 174, 35, "value");
+      if (dart.equals(this[_autoPlacementMode], value)) return;
+      this[_autoPlacementMode] = value;
+      this.markNeedsPlacement();
+      this.markNeedsLayout();
+    }
+    get gridFit() {
+      return this[_gridFit];
+    }
+    set gridFit(value) {
+      if (value == null) dart.nullFailed(I[6], 184, 23, "value");
+      if (this[_gridFit] == value) return;
+      this[_gridFit] = value;
+      this.markNeedsLayout();
+    }
+    get areasSpec() {
+      return this[_areasSpec];
+    }
+    set areasSpec(value) {
+      if (this[_areasSpec] == value) return;
+      this[_areasSpec] = value;
+      this.areas = value != null ? placement.parseNamedAreasSpec(value) : null;
+    }
+    get areas() {
+      return this[_areas];
+    }
+    set areas(value) {
+      if (dart.equals(this[_areas], value)) return;
+      this[_areas] = value;
+      this.markNeedsPlacement();
+      this.markNeedsLayout();
+    }
+    get columnSizes() {
+      return this[_columnSizes];
+    }
+    set columnSizes(value) {
+      if (value == null) dart.nullFailed(I[6], 213, 35, "value");
+      if (dart.test(track_size.trackSizeListsEqual(this[_columnSizes], value))) return;
+      if (value[$length] != this[_columnSizes][$length]) this.markNeedsPlacement();
+      this.markNeedsLayout();
+      this[_columnSizes] = value;
+    }
+    get rowSizes() {
+      return this[_rowSizes];
+    }
+    set rowSizes(value) {
+      if (value == null) dart.nullFailed(I[6], 226, 32, "value");
+      if (dart.test(track_size.trackSizeListsEqual(this[_rowSizes], value))) return;
+      if (value[$length] != this[_rowSizes][$length]) this.markNeedsPlacement();
+      this.markNeedsLayout();
+      this[_rowSizes] = value;
+    }
+    get columnGap() {
+      return this[_columnGap];
+    }
+    set columnGap(value) {
+      if (value == null) dart.nullFailed(I[6], 240, 24, "value");
+      if (this[_columnGap] == value) return;
+      this[_columnGap] = value;
+      this.markNeedsLayout();
+    }
+    get rowGap() {
+      return this[_rowGap];
+    }
+    set rowGap(value) {
+      if (value == null) dart.nullFailed(I[6], 249, 21, "value");
+      if (this[_rowGap] == value) return;
+      this[_rowGap] = value;
+      this.markNeedsLayout();
+    }
+    get textDirection() {
+      return this[_textDirection];
+    }
+    set textDirection(value) {
+      if (value == null) dart.nullFailed(I[6], 258, 35, "value");
+      if (this[_textDirection] == value) return;
+      this[_textDirection] = value;
+      this.markNeedsLayout();
+    }
+    setupParentData(child) {
+      box.RenderBox.as(child);
+      if (child == null) dart.nullFailed(I[6], 265, 34, "child");
+      if (!layout_grid$.GridParentData.is(child.parentData)) {
+        child.parentData = new layout_grid$.GridParentData.new();
+      }
+    }
+    computeMinIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[6], 272, 42, "height");
+      return this[_computeIntrinsicSize](new box.BoxConstraints.tightFor({height: height})).minWidthOfTracks;
+    }
+    computeMaxIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[6], 277, 42, "height");
+      return this[_computeIntrinsicSize](new box.BoxConstraints.new({minHeight: height})).maxTracksWidth;
+    }
+    computeMinIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[6], 281, 43, "width");
+      return this[_computeIntrinsicSize](new box.BoxConstraints.tightFor({width: width})).minHeightOfTracks;
+    }
+    computeMaxIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[6], 286, 43, "width");
+      return this[_computeIntrinsicSize](new box.BoxConstraints.new({minWidth: width})).maxTracksHeight;
+    }
+    [_computeIntrinsicSize](constraints) {
+      if (constraints == null) dart.nullFailed(I[6], 292, 55, "constraints");
+      return this.computeGridSize(constraints);
+    }
+    computeDistanceToActualBaseline(baseline) {
+      if (baseline == null) dart.nullFailed(I[6], 296, 56, "baseline");
+      return this.defaultComputeDistanceToHighestActualBaseline(baseline);
+    }
+    getChildrenInTrack(trackType, trackIndex) {
+      if (trackType == null) dart.nullFailed(I[6], 300, 48, "trackType");
+      if (trackIndex == null) dart.nullFailed(I[6], 300, 63, "trackIndex");
+      return collections['IterableExt|removeDuplicates'](box.RenderBox, this[_placementGrid].getCellsInTrack(trackIndex, trackType)[$expand](box.RenderBox, dart.fn(cell => {
+        if (cell == null) dart.nullFailed(I[6], 303, 18, "cell");
+        return cell.occupants;
+      }, T.GridCellToSetOfRenderBox())))[$toList]({growable: false});
+    }
+    performLayout() {
+      if (dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint("Starting grid layout for constraints " + dart.str(this.constraints) + ", " + "child constraints " + dart.str(box$['LayoutGridExtensionsForBoxConstraints|constraintsForGridFit'](this.constraints, this.gridFit)));
+      }
+      let gridSizing = this.lastGridSizing = this.computeGridSize(this.constraints);
+      this.size = dart.nullCheck(gridSizing.gridSize);
+      if (dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint("Determined track sizes:");
+        for (let c = 0; c < dart.notNull(gridSizing.columnTracks.length); c = c + 1) {
+          let columnWidth = gridSizing.sizeForArea(new placement.GridArea.new({columnStart: c, columnEnd: c + 1, rowStart: 0, rowEnd: 1})).width;
+          print.debugPrint("  column " + dart.str(c) + ": " + dart.str(columnWidth));
+        }
+        for (let r = 0; r < dart.notNull(gridSizing.rowTracks.length); r = r + 1) {
+          let rowHeight = gridSizing.sizeForArea(new placement.GridArea.new({columnStart: 0, columnEnd: 1, rowStart: r, rowEnd: r + 1})).height;
+          print.debugPrint("  row " + dart.str(r) + ": " + dart.str(rowHeight));
+        }
+        print.debugPrint("Finished track sizing");
+      }
+      let shouldComputeChildRect = false;
+      if (!dart.test(dart.fn(() => {
+        this[_debugChildRect] = ui.Rect.zero;
+        shouldComputeChildRect = true;
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[6], 350, 12, "() {\n      _debugChildRect = Rect.zero;\n      shouldComputeChildRect = true;\n      return true;\n    }()");
+      let child = this.firstChild;
+      while (child != null) {
+        let parentData = layout_grid$.GridParentData.as(child.parentData);
+        if (dart.test(parentData.isPlaced)) {
+          let area = dart.nullCheck(this[_placementGrid].itemAreas[$_get](child));
+          let areaRect = gridSizing.offsetForArea(area)['&'](gridSizing.sizeForArea(area));
+          parentData.offset = areaRect.topLeft;
+          child.layout(new box.BoxConstraints.loose(areaRect.size), {parentUsesSize: shouldComputeChildRect});
+          if (shouldComputeChildRect) {
+            this[_debugChildRect] = this[_debugChildRect].expandToInclude(areaRect.topLeft['&'](child.size));
+          }
+        } else if (dart.test(debug.debugPrintUnplacedChildren)) {
+          print.debugPrint("Area \"" + dart.str(parentData.areaName) + "\" not found. \n" + dart.str(child) + " will not be rendered. (" + dart.str(parentData) + ")");
+        }
+        child = parentData.nextSibling;
+      }
+    }
+    computeDryLayout(constraints) {
+      if (constraints == null) dart.nullFailed(I[6], 394, 40, "constraints");
+      return dart.nullCheck(this.computeGridSize(constraints).gridSize);
+    }
+    computeGridSize(gridConstraints, opts) {
+      if (gridConstraints == null) dart.nullFailed(I[6], 400, 20, "gridConstraints");
+      let childConstraints = opts && 'childConstraints' in opts ? opts.childConstraints : null;
+      childConstraints == null ? childConstraints = box$['LayoutGridExtensionsForBoxConstraints|constraintsForGridFit'](gridConstraints, this.gridFit) : null;
+      this.performItemPlacement();
+      let gridSizing = new layout_grid$.GridSizingInfo.fromTrackSizeFunctions({columnSizeFunctions: this[_columnSizes], rowSizeFunctions: this[_rowSizes], textDirection: this.textDirection, columnGap: this.columnGap, rowGap: this.rowGap});
+      this[_performTrackSizing](track_size.TrackType.column, gridSizing, {constraints: childConstraints});
+      this[_performTrackSizing](track_size.TrackType.row, gridSizing, {constraints: childConstraints});
+      this[_stretchIntrinsicTracks](track_size.TrackType.column, gridSizing, {constraints: childConstraints});
+      this[_stretchIntrinsicTracks](track_size.TrackType.row, gridSizing, {constraints: childConstraints});
+      gridSizing.gridSize = gridConstraints.constrain(gridSizing.internalGridSize);
+      return gridSizing;
+    }
+    performItemPlacement() {
+      if (dart.test(this.needsPlacement)) {
+        this.needsPlacement = false;
+        this[_placementGrid] = placement$.computeItemPlacement(this);
+      }
+    }
+    [_performTrackSizing](typeBeingSized, gridSizing, opts) {
+      if (typeBeingSized == null) dart.nullFailed(I[6], 455, 15, "typeBeingSized");
+      if (gridSizing == null) dart.nullFailed(I[6], 456, 20, "gridSizing");
+      let constraints = opts && 'constraints' in opts ? opts.constraints : null;
+      let tracks = this[_performTrackSizingInternal](typeBeingSized, gridSizing, {constraints: constraints});
+      gridSizing.markTrackTypeSized(typeBeingSized);
+      return tracks;
+    }
+    [_performTrackSizingInternal](typeBeingSized, gridSizing, opts) {
+      if (typeBeingSized == null) dart.nullFailed(I[6], 469, 15, "typeBeingSized");
+      if (gridSizing == null) dart.nullFailed(I[6], 470, 20, "gridSizing");
+      let constraints = opts && 'constraints' in opts ? opts.constraints : null;
+      let sizingAxis = track_size.measurementAxisForTrackType(typeBeingSized);
+      let intrinsicTracks = T.JSArrayOfGridTrack().of([]);
+      let flexibleTracks = T.JSArrayOfGridTrack().of([]);
+      let tracks = gridSizing.tracksForType(typeBeingSized);
+      let bounds = layout_grid$.constraintBoundsForType(constraints, typeBeingSized);
+      let totalGapAlongAxis = dart.notNull(gridSizing.unitGapAlongAxis(sizingAxis)) * (dart.notNull(tracks[$length]) - 1);
+      let initialFreeSpace = bounds.max[$isFinite] ? dart.notNull(bounds.max) - totalGapAlongAxis : 0.0;
+      let isAxisUpperBound = bounds.max[$isFinite];
+      if (dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint(diagnostics.describeEnum(typeBeingSized)[$toUpperCase]() + " tracks with a " + "maximum free space of " + dart.str(initialFreeSpace) + ", " + "isAxisUpperBound=" + dart.str(isAxisUpperBound));
+      }
+      for (let i = 0; i < dart.notNull(tracks[$length]); i = i + 1) {
+        let track = tracks[$_get](i);
+        if (dart.test(track.sizeFunction.isFixedForConstraints(typeBeingSized, dart.nullCheck(constraints)))) {
+          let fixedSize = track.sizeFunction.minIntrinsicSize(typeBeingSized, T.JSArrayOfRenderBox().of([]));
+          track.baseSize = track.growthLimit = fixedSize;
+        } else if (dart.test(track.sizeFunction.isFlexible)) {
+          track.baseSize = track.growthLimit = 0.0;
+          flexibleTracks[$add](track);
+        } else {
+          track.baseSize = 0.0;
+          track.growthLimit = 1 / 0;
+          intrinsicTracks[$add](track);
+        }
+        track.growthLimit = math.max(core.double, track.growthLimit, track.baseSize);
+      }
+      this[_resolveIntrinsicTrackSizes](typeBeingSized, sizingAxis, tracks, intrinsicTracks, gridSizing, constraints);
+      let axisMinSize = 0.0;
+      let axisMaxSize = 0.0;
+      for (let track of tracks) {
+        if (!!dart.test(track.isInfinite)) dart.assertFailed(null, I[6], 525, 14, "!track.isInfinite");
+        axisMinSize = axisMinSize + dart.notNull(track.baseSize);
+        axisMaxSize = axisMaxSize + dart.notNull(track.growthLimit);
+      }
+      let freeSpace = initialFreeSpace - axisMinSize;
+      gridSizing.setMinMaxTrackSizesForAxis(axisMinSize, axisMaxSize, sizingAxis);
+      if (dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint("min-max: " + dart.str(new (T.MinMaxOfdouble()).new(axisMinSize, axisMaxSize)));
+        print.debugPrint("free space: " + dart.str(freeSpace));
+      }
+      if (isAxisUpperBound && dart.notNull(freeSpace) < 0) {
+        if (dart.test(debug.debugPrintGridLayout)) print.debugPrint("Overflowing by " + dart.str(freeSpace));
+        return tracks;
+      }
+      if (isAxisUpperBound && axisMaxSize > axisMinSize) {
+        if (dart.test(debug.debugPrintGridLayout)) {
+          print.debugPrint("Can grow within free space");
+        }
+        freeSpace = this[_distributeFreeSpace](freeSpace, tracks, T.JSArrayOfGridTrack().of([]), layout_grid$._IntrinsicDimension.min);
+        if (dart.test(debug.debugPrintGridLayout)) {
+          print.debugPrint("  Finished distribution. Free space is now " + dart.str(freeSpace));
+        }
+      } else {
+        for (let track of tracks) {
+          freeSpace = dart.notNull(freeSpace) - (dart.notNull(track.growthLimit) - dart.notNull(track.baseSize));
+          track.baseSize = track.growthLimit;
+        }
+      }
+      if (dart.test(flexibleTracks[$isEmpty]) || dart.notNull(freeSpace) <= 0) {
+        return tracks;
+      }
+      let flexFraction = this[_findFlexFactorUnitSize](tracks, flexibleTracks, initialFreeSpace);
+      for (let track of flexibleTracks) {
+        track.baseSize = dart.notNull(flexFraction) * dart.nullCheck(track.sizeFunction.flex);
+        freeSpace = dart.notNull(freeSpace) - dart.notNull(track.baseSize);
+        axisMinSize = axisMinSize + dart.notNull(track.baseSize);
+        axisMaxSize = axisMaxSize + dart.notNull(track.baseSize);
+      }
+      gridSizing.setMinMaxTrackSizesForAxis(axisMinSize, axisMaxSize, sizingAxis);
+      return tracks;
+    }
+    [_resolveIntrinsicTrackSizes](type, sizingAxis, tracks, intrinsicTracks, gridSizing, constraints) {
+      let t8;
+      if (type == null) dart.nullFailed(I[6], 589, 15, "type");
+      if (sizingAxis == null) dart.nullFailed(I[6], 590, 10, "sizingAxis");
+      if (tracks == null) dart.nullFailed(I[6], 591, 21, "tracks");
+      if (intrinsicTracks == null) dart.nullFailed(I[6], 592, 21, "intrinsicTracks");
+      if (gridSizing == null) dart.nullFailed(I[6], 593, 20, "gridSizing");
+      if (dart.test(intrinsicTracks[$isNotEmpty]) && dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint("Resolving intrinsic " + dart.str(diagnostics.describeEnum(type)) + " " + (type == track_size.TrackType.column ? "widths" : "heights") + " " + "[" + dart.str(debug.debugTrackIndicesString(intrinsicTracks)) + "]");
+      }
+      let itemsInIntrinsicTracks = collections['IterableExt|removeDuplicates'](box.RenderBox, intrinsicTracks[$expand](box.RenderBox, dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 603, 18, "t");
+        return this.getChildrenInTrack(type, t.index);
+      }, T.GridTrackToListOfRenderBox())));
+      let itemsBySpan = functions.groupBy(box.RenderBox, core.int, itemsInIntrinsicTracks, dart.fn(item => {
+        if (item == null) dart.nullFailed(I[6], 606, 71, "item");
+        return dart.nullCheck(this[_placementGrid].itemAreas[$_get](box.RenderBox.as(item))).spanForAxis(sizingAxis);
+      }, T.RenderObjectToint()));
+      let sortedSpans = (t8 = itemsBySpan[$keys][$toList](), (() => {
+        t8[$sort]();
+        return t8;
+      })());
+      for (let span of sortedSpans) {
+        let spanItems = dart.nullCheck(itemsBySpan[$_get](span));
+        let spanItemsByTrack = functions.groupBy(box.RenderBox, core.int, spanItems, dart.fn(item => {
+          if (item == null) dart.nullFailed(I[6], 619, 10, "item");
+          return dart.nullCheck(this[_placementGrid].itemAreas[$_get](item)).startForAxis(sizingAxis);
+        }, T.RenderBoxToint()));
+        for (let i of spanItemsByTrack[$keys]) {
+          let spannedTracks = tracks[$getRange](i, dart.notNull(i) + dart.notNull(span));
+          let spanItemsInTrack = spanItemsByTrack[$_get](i);
+          let intrinsicTrack = iterable_extensions['IterableExtension|firstWhereOrNull'](layout_grid$.GridTrack, spannedTracks, dart.fn(t => {
+            if (t == null) dart.nullFailed(I[6], 628, 45, "t");
+            return t.sizeFunction.isIntrinsic;
+          }, T.GridTrackTobool()));
+          if (intrinsicTrack == null || dart.test(spannedTracks[$any](dart.fn(t => {
+            if (t == null) dart.nullFailed(I[6], 632, 32, "t");
+            return t.sizeFunction.isFlexible;
+          }, T.GridTrackTobool())))) {
+            continue;
+          }
+          let crossAxis = basic_types.flipAxis(sizingAxis);
+          let crossAxisSizeForItem = dart.test(gridSizing.isAxisSized(crossAxis)) ? dart.fn(item => {
+            if (item == null) dart.nullFailed(I[6], 638, 26, "item");
+            return gridSizing.sizeForAreaOnAxis(dart.nullCheck(this[_placementGrid].itemAreas[$_get](item)), crossAxis);
+          }, T.RenderBoxTodouble()) : dart.fn(_ => {
+            if (_ == null) dart.nullFailed(I[6], 642, 26, "_");
+            return 1 / 0;
+          }, T.RenderBoxTodouble());
+          let minSpanSize = intrinsicTrack.sizeFunction.minIntrinsicSize(type, dart.nullCheck(spanItemsInTrack), {crossAxisSizeForItem: crossAxisSizeForItem});
+          if (dart.test(debug.debugPrintGridLayout)) {
+            print.debugPrint("  min size of " + dart.str(debug.debugTrackIndicesString(spannedTracks, {trackPrefix: true})) + " " + "= " + dart.str(minSpanSize));
+          }
+          this[_distributeCalculatedSpaceToSpannedTracks](minSpanSize, type, spannedTracks, layout_grid$._IntrinsicDimension.min);
+          let maxSpanSize = intrinsicTrack.sizeFunction.maxIntrinsicSize(type, spanItemsInTrack, {crossAxisSizeForItem: crossAxisSizeForItem});
+          this[_distributeCalculatedSpaceToSpannedTracks](maxSpanSize, type, spannedTracks, layout_grid$._IntrinsicDimension.max);
+          if (dart.test(debug.debugPrintGridLayout)) {
+            print.debugPrint("  max size of " + dart.str(debug.debugTrackIndicesString(spannedTracks, {trackPrefix: true})) + " " + "= " + dart.str(maxSpanSize));
+          }
+        }
+      }
+      for (let track of intrinsicTracks) {
+        if (dart.test(track.isInfinite)) track.growthLimit = track.baseSize;
+        if (dart.test(debug.debugPrintGridLayout)) {
+          print.debugPrint("  update track " + dart.str(track.index) + " = " + dart.str(track.toPrettySizeString()));
+        }
+      }
+    }
+    [_distributeCalculatedSpaceToSpannedTracks](calculatedSpace, type, spannedTracks, dimension) {
+      if (calculatedSpace == null) dart.nullFailed(I[6], 686, 12, "calculatedSpace");
+      if (type == null) dart.nullFailed(I[6], 687, 15, "type");
+      if (spannedTracks == null) dart.nullFailed(I[6], 688, 25, "spannedTracks");
+      if (dimension == null) dart.nullFailed(I[6], 689, 25, "dimension");
+      let freeSpace = calculatedSpace;
+      for (let track of spannedTracks) {
+        freeSpace = dart.notNull(freeSpace) - dart.notNull(dimension == layout_grid$._IntrinsicDimension.min ? track.baseSize : dart.test(track.isInfinite) ? track.baseSize : track.growthLimit);
+      }
+      if (dart.notNull(freeSpace) <= 0) {
+        for (let track of spannedTracks) {
+          if (dart.test(track.isInfinite)) {
+            track.growthLimit = track.baseSize;
+          }
+        }
+        return;
+      }
+      let intrinsicTracks = spannedTracks[$where](dart.fn(track => {
+        if (track == null) dart.nullFailed(I[6], 713, 17, "track");
+        return track.sizeFunction.isIntrinsic;
+      }, T.GridTrackTobool()))[$toList]({growable: false});
+      if (dart.test(intrinsicTracks[$isNotEmpty])) {
+        this[_distributeFreeSpace](freeSpace, intrinsicTracks, intrinsicTracks, dimension);
+      }
+    }
+    [_distributeFreeSpace](freeSpace, tracks, growableAboveMaxTracks, dimension) {
+      if (freeSpace == null) dart.nullFailed(I[6], 724, 12, "freeSpace");
+      if (tracks == null) dart.nullFailed(I[6], 725, 21, "tracks");
+      if (growableAboveMaxTracks == null) dart.nullFailed(I[6], 726, 21, "growableAboveMaxTracks");
+      if (dimension == null) dart.nullFailed(I[6], 727, 25, "dimension");
+      if (!(dart.notNull(freeSpace) >= 0)) dart.assertFailed(null, I[6], 729, 12, "freeSpace >= 0");
+      if (dart.test(debug.debugPrintGridLayout)) {
+        print.debugPrint("  distributing " + dart.str(freeSpace) + " across " + dart.str(debug.debugTrackIndicesString(tracks)) + " on " + dart.str(diagnostics.describeEnum(dimension)));
+      }
+      tracks = tracks[$toList]();
+      function distribute(tracks, getShareForTrack) {
+        if (tracks == null) dart.nullFailed(I[6], 741, 23, "tracks");
+        if (getShareForTrack == null) dart.nullFailed(I[6], 742, 42, "getShareForTrack");
+        let trackCount = tracks[$length];
+        for (let i = 0; i < dart.notNull(trackCount); i = i + 1) {
+          let track = tracks[$_get](i);
+          let availableShare = dart.notNull(freeSpace) / (dart.notNull(trackCount) - i);
+          let shareForTrack = getShareForTrack(track, availableShare);
+          if (!(dart.notNull(shareForTrack) >= 0.0)) dart.assertFailed("Never shrink a track", I[6], 749, 16, "shareForTrack >= 0.0");
+          track.sizeDuringDistribution = dart.notNull(track.sizeDuringDistribution) + dart.notNull(shareForTrack);
+          freeSpace = dart.notNull(freeSpace) - dart.notNull(shareForTrack);
+        }
+      }
+      dart.fn(distribute, T.ListOfGridTrackAndFnTovoid());
+      for (let track of tracks) {
+        track.sizeDuringDistribution = dimension == layout_grid$._IntrinsicDimension.min ? track.baseSize : dart.test(track.isInfinite) ? track.baseSize : track.growthLimit;
+      }
+      tracks[$sort](C[14] || CT.C14);
+      distribute(tracks, dart.fn((track, availableShare) => {
+        if (track == null) dart.nullFailed(I[6], 769, 25, "track");
+        if (availableShare == null) dart.nullFailed(I[6], 769, 32, "availableShare");
+        return dart.test(track.isInfinite) ? availableShare : math.min(core.double, availableShare, dart.notNull(track.growthLimit) - dart.notNull(track.sizeDuringDistribution));
+      }, T.GridTrackAnddoubleTodouble()));
+      if (dart.notNull(freeSpace) > 0 && dart.test(growableAboveMaxTracks[$isNotEmpty])) {
+        distribute(growableAboveMaxTracks, dart.fn((track, availableShare) => {
+          if (track == null) dart.nullFailed(I[6], 783, 36, "track");
+          if (availableShare == null) dart.nullFailed(I[6], 783, 43, "availableShare");
+          return availableShare;
+        }, T.GridTrackAnddoubleTodouble()));
+      }
+      for (let track of tracks) {
+        if (dimension == layout_grid$._IntrinsicDimension.min) {
+          track.baseSize = math.max(core.double, track.baseSize, track.sizeDuringDistribution);
+        } else {
+          track.growthLimit = dart.test(track.isInfinite) ? track.sizeDuringDistribution : math.max(core.double, track.growthLimit, track.sizeDuringDistribution);
+        }
+      }
+      return freeSpace;
+    }
+    [_findFlexFactorUnitSize](tracks, flexibleTracks, freeSpace) {
+      if (tracks == null) dart.nullFailed(I[6], 801, 21, "tracks");
+      if (flexibleTracks == null) dart.nullFailed(I[6], 802, 21, "flexibleTracks");
+      if (freeSpace == null) dart.nullFailed(I[6], 803, 12, "freeSpace");
+      let flexSum = 0.0;
+      for (let track of tracks) {
+        if (!dart.test(track.sizeFunction.isFlexible)) {
+          freeSpace = dart.notNull(freeSpace) - dart.notNull(track.baseSize);
+        } else {
+          flexSum = flexSum + dart.nullCheck(track.sizeFunction.flex);
+        }
+      }
+      if (!(flexSum > 0)) dart.assertFailed(null, I[6], 814, 12, "flexSum > 0");
+      return dart.notNull(freeSpace) / flexSum;
+    }
+    [_stretchIntrinsicTracks](type, gridSizing, opts) {
+      if (type == null) dart.nullFailed(I[6], 824, 15, "type");
+      if (gridSizing == null) dart.nullFailed(I[6], 825, 20, "gridSizing");
+      let constraints = opts && 'constraints' in opts ? opts.constraints : null;
+      if (constraints == null) dart.nullFailed(I[6], 826, 29, "constraints");
+      let minimumGridSize = layout_grid$.constraintBoundsForType(constraints, type).min;
+      let freeSpace = dart.notNull(minimumGridSize) - dart.notNull(gridSizing.totalBaseSizeOfTracksForType(type)) - dart.notNull(gridSizing.totalGapForType(type));
+      if (freeSpace <= 0) return;
+      let tracks = gridSizing.tracksForType(type);
+      let intrinsicTracks = tracks[$where](dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 836, 43, "t");
+        return t.sizeFunction.isIntrinsic;
+      }, T.GridTrackTobool()));
+      if (dart.test(intrinsicTracks[$isEmpty])) return;
+      let shareForTrack = freeSpace / dart.notNull(intrinsicTracks[$length]);
+      for (let track of intrinsicTracks) {
+        track.baseSize = dart.notNull(track.baseSize) + shareForTrack;
+      }
+      gridSizing.invalidateTrackStartsForType(type);
+    }
+    adoptChild(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[6], 847, 32, "child");
+      super.adoptChild(child);
+      this.markNeedsPlacementIfRequired(child);
+    }
+    dropChild(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[6], 853, 31, "child");
+      super.dropChild(child);
+      this.markNeedsPlacementIfRequired(child);
+    }
+    markNeedsPlacementIfRequired(child) {
+      if (child == null) dart.nullFailed(I[6], 861, 50, "child");
+      if (dart.test(this.needsPlacement)) return;
+      let parentData = T.GridParentDataN().as(child.parentData);
+      if (parentData != null && !dart.test(parentData.isDefinitelyPlaced)) {
+        this.markNeedsPlacement();
+      }
+    }
+    markNeedsPlacement() {
+      return this.needsPlacement = true;
+    }
+    hitTestChildren(result, opts) {
+      if (result == null) dart.nullFailed(I[6], 872, 41, "result");
+      let position = opts && 'position' in opts ? opts.position : null;
+      if (position == null) dart.nullFailed(I[6], 872, 66, "position");
+      return this.defaultHitTestChildren(result, {position: position});
+    }
+    visitChildrenForSemantics(visitor) {
+      if (visitor == null) dart.nullFailed(I[6], 877, 34, "visitor");
+      let child = this.firstChild;
+      while (child != null) {
+        let childParentData = layout_grid$.GridParentData.as(child.parentData);
+        if (dart.test(childParentData.isPlaced)) {
+          visitor(child);
+        }
+        child = childParentData.nextSibling;
+      }
+    }
+    paint(context, offset) {
+      if (context == null) dart.nullFailed(I[6], 889, 30, "context");
+      if (offset == null) dart.nullFailed(I[6], 889, 46, "offset");
+      this.visitChildrenForSemantics(dart.fn(child => {
+        if (child == null) dart.nullFailed(I[6], 890, 32, "child");
+        let childParentData = layout_grid$.GridParentData.as(child.parentData);
+        context.paintChild(child, childParentData.offset['+'](offset));
+      }, T.RenderObjectTovoid()));
+      if (!dart.test(dart.fn(() => {
+        let gridRect = ui.Offset.zero['&'](this.size);
+        let childRect = layout_grid$._childRectForOverflowComparison(gridRect, this[_debugChildRect]);
+        this.paintOverflowIndicator(context, offset, gridRect, childRect);
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[6], 895, 12, "() {\n      final gridRect = Offset.zero & size;\n      // We massage the child rect a bit to make sure that we aren't marking\n      // overflows when they're very minor.\n      //\n      // The reason this isn't a boolean response is because tiny overflows are\n      // common, which is fine, but when one of the edges is overflowing by\n      // a meaningful amount, both edges will frequently show the indicator.\n      final childRect =\n          _childRectForOverflowComparison(gridRect, _debugChildRect);\n      paintOverflowIndicator(context, offset, gridRect, childRect);\n\n      return true;\n    }()");
+    }
+    debugPaintSize(context, offset) {
+      if (context == null) dart.nullFailed(I[6], 912, 39, "context");
+      if (offset == null) dart.nullFailed(I[6], 912, 55, "offset");
+      if (!dart.test(dart.fn(() => {
+        let t8, t8$, t8$0, t8$1;
+        super.debugPaintSize(context, offset);
+        let gapPaint = (t8 = ui.Paint.new(), (() => {
+          t8.color = C[15] || CT.C15;
+          return t8;
+        })());
+        let cellEdgePaint = (t8$ = ui.Paint.new(), (() => {
+          t8$.style = ui.PaintingStyle.stroke;
+          t8$.strokeWidth = 1.0;
+          t8$.color = C[15] || CT.C15;
+          return t8$;
+        })());
+        let gapPath = (t8$0 = ui.Path.new(), (() => {
+          t8$0.addRect(offset['&'](this.size));
+          return t8$0;
+        })());
+        for (let c = 0; c < dart.notNull(this[_columnSizes][$length]); c = c + 1) {
+          for (let r = 0; r < dart.notNull(this[_rowSizes][$length]); r = r + 1) {
+            let cellRect = this.lastGridSizing.rectForArea(new placement.GridArea.new({columnStart: c, columnEnd: c + 1, rowStart: r, rowEnd: r + 1}));
+            gapPath = ui.Path.combine(ui.PathOperation.difference, gapPath, (t8$1 = ui.Path.new(), (() => {
+              t8$1.addRect(cellRect.deflate(0.1));
+              return t8$1;
+            })()));
+          }
+        }
+        let drawGaps = this[_columnGap] !== 0 || this[_rowGap] !== 0;
+        context.canvas.drawPath(gapPath, drawGaps ? gapPaint : cellEdgePaint);
+        return true;
+      }, T.VoidTobool())())) dart.assertFailed(null, I[6], 913, 12, "() {\n      super.debugPaintSize(context, offset);\n\n      final gapPaint = Paint()..color = const Color(0x90909090);\n      final cellEdgePaint = Paint()\n        ..style = PaintingStyle.stroke\n        ..strokeWidth = 1.0\n        ..color = const Color(0x90909090);\n\n      var gapPath = Path()..addRect(offset & size);\n      for (int c = 0; c < _columnSizes.length; c++) {\n        for (int r = 0; r < _rowSizes.length; r++) {\n          final cellRect = lastGridSizing.rectForArea(GridArea(\n            columnStart: c,\n            columnEnd: c + 1,\n            rowStart: r,\n            rowEnd: r + 1,\n          ));\n\n          gapPath = Path.combine(\n            PathOperation.difference,\n            gapPath,\n            Path()..addRect(cellRect.deflate(0.1)),\n          );\n        }\n      }\n      final drawGaps = _columnGap != 0 || _rowGap != 0;\n      context.canvas.drawPath(gapPath, drawGaps ? gapPaint : cellEdgePaint);\n\n      return true;\n    }()");
+    }
+  };
+  (layout_grid$.RenderLayoutGrid.new = function(opts) {
+    let autoPlacement = opts && 'autoPlacement' in opts ? opts.autoPlacement : C[0] || CT.C0;
+    if (autoPlacement == null) dart.nullFailed(I[6], 137, 19, "autoPlacement");
+    let gridFit = opts && 'gridFit' in opts ? opts.gridFit : C[9] || CT.C9;
+    if (gridFit == null) dart.nullFailed(I[6], 138, 13, "gridFit");
+    let children = opts && 'children' in opts ? opts.children : null;
+    let columnGap = opts && 'columnGap' in opts ? opts.columnGap : 0;
+    if (columnGap == null) dart.nullFailed(I[6], 140, 12, "columnGap");
+    let rowGap = opts && 'rowGap' in opts ? opts.rowGap : 0;
+    if (rowGap == null) dart.nullFailed(I[6], 141, 12, "rowGap");
+    let areasSpec = opts && 'areasSpec' in opts ? opts.areasSpec : null;
+    let columnSizes = opts && 'columnSizes' in opts ? opts.columnSizes : null;
+    if (columnSizes == null) dart.nullFailed(I[6], 143, 30, "columnSizes");
+    let rowSizes = opts && 'rowSizes' in opts ? opts.rowSizes : null;
+    if (rowSizes == null) dart.nullFailed(I[6], 144, 30, "rowSizes");
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    if (textDirection == null) dart.nullFailed(I[6], 145, 28, "textDirection");
+    this[needsPlacement] = true;
+    this[__RenderLayoutGrid__placementGrid] = null;
+    this[__RenderLayoutGrid__placementGrid_isSet] = false;
+    this[__RenderLayoutGrid_lastGridSizing] = null;
+    this[__RenderLayoutGrid_lastGridSizing_isSet] = false;
+    this[__RenderLayoutGrid__debugChildRect] = null;
+    this[__RenderLayoutGrid__debugChildRect_isSet] = false;
+    this[_autoPlacementMode] = autoPlacement;
+    this[_gridFit] = gridFit;
+    this[_columnSizes] = columnSizes;
+    this[_rowSizes] = rowSizes;
+    this[_areasSpec] = areasSpec;
+    this[_areas] = areasSpec != null ? placement.parseNamedAreasSpec(areasSpec) : null;
+    this[_columnGap] = columnGap;
+    this[_rowGap] = rowGap;
+    this[_textDirection] = textDirection;
+    layout_grid$.RenderLayoutGrid.__proto__.new.call(this);
+    this.addAll(children);
+  }).prototype = layout_grid$.RenderLayoutGrid.prototype;
+  dart.addTypeTests(layout_grid$.RenderLayoutGrid);
+  dart.addTypeCaches(layout_grid$.RenderLayoutGrid);
+  dart.setMethodSignature(layout_grid$.RenderLayoutGrid, () => ({
+    __proto__: dart.getMethods(layout_grid$.RenderLayoutGrid.__proto__),
+    [_computeIntrinsicSize]: dart.fnType(layout_grid$.GridSizingInfo, [box.BoxConstraints]),
+    getChildrenInTrack: dart.fnType(core.List$(box.RenderBox), [track_size.TrackType, core.int]),
+    computeGridSize: dart.fnType(layout_grid$.GridSizingInfo, [box.BoxConstraints], {childConstraints: dart.nullable(box.BoxConstraints)}, {}),
+    performItemPlacement: dart.fnType(dart.void, []),
+    [_performTrackSizing]: dart.fnType(core.List$(layout_grid$.GridTrack), [track_size.TrackType, layout_grid$.GridSizingInfo], {constraints: dart.nullable(box.BoxConstraints)}, {}),
+    [_performTrackSizingInternal]: dart.fnType(core.List$(layout_grid$.GridTrack), [track_size.TrackType, layout_grid$.GridSizingInfo], {constraints: dart.nullable(box.BoxConstraints)}, {}),
+    [_resolveIntrinsicTrackSizes]: dart.fnType(dart.void, [track_size.TrackType, basic_types.Axis, core.List$(layout_grid$.GridTrack), core.List$(layout_grid$.GridTrack), layout_grid$.GridSizingInfo, dart.nullable(box.BoxConstraints)]),
+    [_distributeCalculatedSpaceToSpannedTracks]: dart.fnType(dart.void, [core.double, track_size.TrackType, core.Iterable$(layout_grid$.GridTrack), layout_grid$._IntrinsicDimension]),
+    [_distributeFreeSpace]: dart.fnType(core.double, [core.double, core.List$(layout_grid$.GridTrack), core.List$(layout_grid$.GridTrack), layout_grid$._IntrinsicDimension]),
+    [_findFlexFactorUnitSize]: dart.fnType(core.double, [core.List$(layout_grid$.GridTrack), core.List$(layout_grid$.GridTrack), core.double]),
+    [_stretchIntrinsicTracks]: dart.fnType(dart.void, [track_size.TrackType, layout_grid$.GridSizingInfo], {}, {constraints: box.BoxConstraints}),
+    markNeedsPlacementIfRequired: dart.fnType(dart.void, [object.RenderObject]),
+    markNeedsPlacement: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(layout_grid$.RenderLayoutGrid, () => ({
+    __proto__: dart.getGetters(layout_grid$.RenderLayoutGrid.__proto__),
+    [_placementGrid]: placement$.PlacementGrid,
+    lastGridSizing: layout_grid$.GridSizingInfo,
+    [_debugChildRect]: ui.Rect,
+    autoPlacement: layout_grid.AutoPlacement,
+    gridFit: layout_grid.GridFit,
+    areasSpec: dart.nullable(core.String),
+    areas: dart.nullable(placement.NamedGridAreas),
+    columnSizes: core.List$(track_size.TrackSize),
+    rowSizes: core.List$(track_size.TrackSize),
+    columnGap: core.double,
+    rowGap: core.double,
+    textDirection: ui.TextDirection
+  }));
+  dart.setSetterSignature(layout_grid$.RenderLayoutGrid, () => ({
+    __proto__: dart.getSetters(layout_grid$.RenderLayoutGrid.__proto__),
+    [_placementGrid]: placement$.PlacementGrid,
+    lastGridSizing: layout_grid$.GridSizingInfo,
+    [_debugChildRect]: ui.Rect,
+    autoPlacement: layout_grid.AutoPlacement,
+    gridFit: layout_grid.GridFit,
+    areasSpec: dart.nullable(core.String),
+    areas: dart.nullable(placement.NamedGridAreas),
+    columnSizes: core.List$(track_size.TrackSize),
+    rowSizes: core.List$(track_size.TrackSize),
+    columnGap: core.double,
+    rowGap: core.double,
+    textDirection: ui.TextDirection
+  }));
+  dart.setLibraryUri(layout_grid$.RenderLayoutGrid, I[7]);
+  dart.setFieldSignature(layout_grid$.RenderLayoutGrid, () => ({
+    __proto__: dart.getFields(layout_grid$.RenderLayoutGrid.__proto__),
+    needsPlacement: dart.fieldType(core.bool),
+    [__RenderLayoutGrid__placementGrid]: dart.fieldType(dart.nullable(placement$.PlacementGrid)),
+    [__RenderLayoutGrid__placementGrid_isSet]: dart.fieldType(core.bool),
+    [__RenderLayoutGrid_lastGridSizing]: dart.fieldType(dart.nullable(layout_grid$.GridSizingInfo)),
+    [__RenderLayoutGrid_lastGridSizing_isSet]: dart.fieldType(core.bool),
+    [__RenderLayoutGrid__debugChildRect]: dart.fieldType(dart.nullable(ui.Rect)),
+    [__RenderLayoutGrid__debugChildRect_isSet]: dart.fieldType(core.bool),
+    [_autoPlacementMode]: dart.fieldType(layout_grid.AutoPlacement),
+    [_gridFit]: dart.fieldType(layout_grid.GridFit),
+    [_areasSpec]: dart.fieldType(dart.nullable(core.String)),
+    [_areas]: dart.fieldType(dart.nullable(placement.NamedGridAreas)),
+    [_columnSizes]: dart.fieldType(core.List$(track_size.TrackSize)),
+    [_rowSizes]: dart.fieldType(core.List$(track_size.TrackSize)),
+    [_columnGap]: dart.fieldType(core.double),
+    [_rowGap]: dart.fieldType(core.double),
+    [_textDirection]: dart.fieldType(ui.TextDirection)
+  }));
+  var _name$1 = dart.privateName(layout_grid$, "_name");
+  layout_grid$._IntrinsicDimension = class _IntrinsicDimension extends core.Object {
+    toString() {
+      return this[_name$1];
+    }
+  };
+  (layout_grid$._IntrinsicDimension.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[6], 954, 6, "index");
+    if (_name == null) dart.nullFailed(I[6], 954, 6, "_name");
+    this.index = index;
+    this[_name$1] = _name;
+    ;
+  }).prototype = layout_grid$._IntrinsicDimension.prototype;
+  dart.addTypeTests(layout_grid$._IntrinsicDimension);
+  dart.addTypeCaches(layout_grid$._IntrinsicDimension);
+  dart.setLibraryUri(layout_grid$._IntrinsicDimension, I[7]);
+  dart.setFieldSignature(layout_grid$._IntrinsicDimension, () => ({
+    __proto__: dart.getFields(layout_grid$._IntrinsicDimension.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$1]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(layout_grid$._IntrinsicDimension, ['toString']);
+  layout_grid$._IntrinsicDimension.min = C[16] || CT.C16;
+  layout_grid$._IntrinsicDimension.max = C[17] || CT.C17;
+  layout_grid$._IntrinsicDimension.values = C[18] || CT.C18;
+  var index$0 = dart.privateName(layout_grid$, "GridTrack.index");
+  var sizeFunction$ = dart.privateName(layout_grid$, "GridTrack.sizeFunction");
+  var sizeDuringDistribution = dart.privateName(layout_grid$, "GridTrack.sizeDuringDistribution");
+  var _baseSize = dart.privateName(layout_grid$, "_baseSize");
+  var _growthLimit = dart.privateName(layout_grid$, "_growthLimit");
+  var _increaseGrowthLimitIfNecessary = dart.privateName(layout_grid$, "_increaseGrowthLimitIfNecessary");
+  layout_grid$.GridTrack = class GridTrack extends core.Object {
+    get index() {
+      return this[index$0];
+    }
+    set index(value) {
+      super.index = value;
+    }
+    get sizeFunction() {
+      return this[sizeFunction$];
+    }
+    set sizeFunction(value) {
+      super.sizeFunction = value;
+    }
+    get sizeDuringDistribution() {
+      return this[sizeDuringDistribution];
+    }
+    set sizeDuringDistribution(value) {
+      this[sizeDuringDistribution] = value;
+    }
+    get baseSize() {
+      return this[_baseSize];
+    }
+    set baseSize(value) {
+      if (value == null) dart.nullFailed(I[6], 968, 23, "value");
+      this[_baseSize] = value;
+      this[_increaseGrowthLimitIfNecessary]();
+    }
+    get growthLimit() {
+      return this[_growthLimit];
+    }
+    set growthLimit(value) {
+      if (value == null) dart.nullFailed(I[6], 974, 26, "value");
+      this[_growthLimit] = value;
+      this[_increaseGrowthLimitIfNecessary]();
+    }
+    get isInfinite() {
+      return this[_growthLimit] === 1 / 0;
+    }
+    [_increaseGrowthLimitIfNecessary]() {
+      if (this[_growthLimit] !== 1 / 0 && dart.notNull(this[_growthLimit]) < dart.notNull(this[_baseSize])) {
+        this[_growthLimit] = this[_baseSize];
+      }
+    }
+    toString() {
+      return "GridTrack(baseSize=" + dart.str(this.baseSize) + ", growthLimit=" + dart.str(this.growthLimit) + ", sizeFunction=" + dart.str(this.sizeFunction) + ")";
+    }
+    toPrettySizeString() {
+      return this[_baseSize] == this[_growthLimit] ? this[_baseSize][$toStringAsFixed](1) : this[_baseSize][$toStringAsFixed](1) + "->" + this[_growthLimit][$toStringAsFixed](1);
+    }
+  };
+  (layout_grid$.GridTrack.new = function(index, sizeFunction) {
+    if (index == null) dart.nullFailed(I[6], 957, 18, "index");
+    if (sizeFunction == null) dart.nullFailed(I[6], 957, 30, "sizeFunction");
+    this[_baseSize] = 0.0;
+    this[_growthLimit] = 0.0;
+    this[sizeDuringDistribution] = 0.0;
+    this[index$0] = index;
+    this[sizeFunction$] = sizeFunction;
+    ;
+  }).prototype = layout_grid$.GridTrack.prototype;
+  dart.addTypeTests(layout_grid$.GridTrack);
+  dart.addTypeCaches(layout_grid$.GridTrack);
+  dart.setMethodSignature(layout_grid$.GridTrack, () => ({
+    __proto__: dart.getMethods(layout_grid$.GridTrack.__proto__),
+    [_increaseGrowthLimitIfNecessary]: dart.fnType(dart.void, []),
+    toPrettySizeString: dart.fnType(core.String, [])
+  }));
+  dart.setGetterSignature(layout_grid$.GridTrack, () => ({
+    __proto__: dart.getGetters(layout_grid$.GridTrack.__proto__),
+    baseSize: core.double,
+    growthLimit: core.double,
+    isInfinite: core.bool
+  }));
+  dart.setSetterSignature(layout_grid$.GridTrack, () => ({
+    __proto__: dart.getSetters(layout_grid$.GridTrack.__proto__),
+    baseSize: core.double,
+    growthLimit: core.double
+  }));
+  dart.setLibraryUri(layout_grid$.GridTrack, I[7]);
+  dart.setFieldSignature(layout_grid$.GridTrack, () => ({
+    __proto__: dart.getFields(layout_grid$.GridTrack.__proto__),
+    index: dart.finalFieldType(core.int),
+    sizeFunction: dart.finalFieldType(track_size.TrackSize),
+    [_baseSize]: dart.fieldType(core.double),
+    [_growthLimit]: dart.fieldType(core.double),
+    sizeDuringDistribution: dart.fieldType(core.double)
+  }));
+  dart.defineExtensionMethods(layout_grid$.GridTrack, ['toString']);
+  var gridSize = dart.privateName(layout_grid$, "GridSizingInfo.gridSize");
+  var columnGap$0 = dart.privateName(layout_grid$, "GridSizingInfo.columnGap");
+  var rowGap$0 = dart.privateName(layout_grid$, "GridSizingInfo.rowGap");
+  var columnTracks$ = dart.privateName(layout_grid$, "GridSizingInfo.columnTracks");
+  var rowTracks$ = dart.privateName(layout_grid$, "GridSizingInfo.rowTracks");
+  var textDirection$0 = dart.privateName(layout_grid$, "GridSizingInfo.textDirection");
+  var minWidthOfTracks = dart.privateName(layout_grid$, "GridSizingInfo.minWidthOfTracks");
+  var minHeightOfTracks = dart.privateName(layout_grid$, "GridSizingInfo.minHeightOfTracks");
+  var maxTracksWidth = dart.privateName(layout_grid$, "GridSizingInfo.maxTracksWidth");
+  var maxTracksHeight = dart.privateName(layout_grid$, "GridSizingInfo.maxTracksHeight");
+  var hasColumnSizing = dart.privateName(layout_grid$, "GridSizingInfo.hasColumnSizing");
+  var hasRowSizing = dart.privateName(layout_grid$, "GridSizingInfo.hasRowSizing");
+  var _ltrColumnStarts = dart.privateName(layout_grid$, "_ltrColumnStarts");
+  var _rowStarts = dart.privateName(layout_grid$, "_rowStarts");
+  layout_grid$.GridSizingInfo = class GridSizingInfo extends core.Object {
+    get gridSize() {
+      return this[gridSize];
+    }
+    set gridSize(value) {
+      this[gridSize] = value;
+    }
+    get columnGap() {
+      return this[columnGap$0];
+    }
+    set columnGap(value) {
+      super.columnGap = value;
+    }
+    get rowGap() {
+      return this[rowGap$0];
+    }
+    set rowGap(value) {
+      super.rowGap = value;
+    }
+    get columnTracks() {
+      return this[columnTracks$];
+    }
+    set columnTracks(value) {
+      super.columnTracks = value;
+    }
+    get rowTracks() {
+      return this[rowTracks$];
+    }
+    set rowTracks(value) {
+      super.rowTracks = value;
+    }
+    get textDirection() {
+      return this[textDirection$0];
+    }
+    set textDirection(value) {
+      super.textDirection = value;
+    }
+    get minWidthOfTracks() {
+      return this[minWidthOfTracks];
+    }
+    set minWidthOfTracks(value) {
+      this[minWidthOfTracks] = value;
+    }
+    get minHeightOfTracks() {
+      return this[minHeightOfTracks];
+    }
+    set minHeightOfTracks(value) {
+      this[minHeightOfTracks] = value;
+    }
+    get maxTracksWidth() {
+      return this[maxTracksWidth];
+    }
+    set maxTracksWidth(value) {
+      this[maxTracksWidth] = value;
+    }
+    get maxTracksHeight() {
+      return this[maxTracksHeight];
+    }
+    set maxTracksHeight(value) {
+      this[maxTracksHeight] = value;
+    }
+    get hasColumnSizing() {
+      return this[hasColumnSizing];
+    }
+    set hasColumnSizing(value) {
+      this[hasColumnSizing] = value;
+    }
+    get hasRowSizing() {
+      return this[hasRowSizing];
+    }
+    set hasRowSizing(value) {
+      this[hasRowSizing] = value;
+    }
+    get columnStartsWithoutGaps() {
+      if (this[_ltrColumnStarts] == null) {
+        this[_ltrColumnStarts] = collections.cumulativeSum(core.double, this.columnTracks[$map](core.double, dart.fn(t => {
+          if (t == null) dart.nullFailed(I[6], 1043, 27, "t");
+          return t.baseSize;
+        }, T.GridTrackTodouble())), {includeLast: false})[$toList]({growable: false});
+      }
+      return this[_ltrColumnStarts];
+    }
+    get rowStartsWithoutGaps() {
+      if (this[_rowStarts] == null) {
+        this[_rowStarts] = collections.cumulativeSum(core.double, this.rowTracks[$map](core.double, dart.fn(t => {
+          if (t == null) dart.nullFailed(I[6], 1054, 24, "t");
+          return t.baseSize;
+        }, T.GridTrackTodouble())), {includeLast: false})[$toList]({growable: false});
+      }
+      return this[_rowStarts];
+    }
+    get internalGridSize() {
+      let gridWidth = dart.notNull(collections.sum(core.double, this.columnTracks[$map](core.double, dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 1073, 45, "t");
+        return t.baseSize;
+      }, T.GridTrackTodouble())))) + dart.notNull(this.columnGap) * (dart.notNull(this.columnTracks.length) - 1);
+      let gridHeight = dart.notNull(collections.sum(core.double, this.rowTracks[$map](core.double, dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 1076, 28, "t");
+        return t.baseSize;
+      }, T.GridTrackTodouble())))) + dart.notNull(this.rowGap) * (dart.notNull(this.rowTracks.length) - 1);
+      return new ui.Size.new(gridWidth, gridHeight);
+    }
+    offsetForArea(area) {
+      if (area == null) dart.nullFailed(I[6], 1080, 33, "area");
+      return new ui.Offset.new(this.textDirection == ui.TextDirection.ltr ? dart.notNull(dart.nullCheck(this.columnStartsWithoutGaps)[$_get](area.columnStart)) + dart.notNull(this.columnGap) * dart.notNull(area.columnStart) : dart.notNull(dart.nullCheck(this.gridSize).width) - dart.notNull(dart.nullCheck(this.columnStartsWithoutGaps)[$_get](area.columnStart)) - dart.notNull(this.sizeForAreaOnAxis(area, basic_types.Axis.horizontal)) - dart.notNull(this.columnGap) * dart.notNull(area.columnStart), dart.notNull(dart.nullCheck(this.rowStartsWithoutGaps)[$_get](area.rowStart)) + dart.notNull(this.rowGap) * dart.notNull(area.rowStart));
+    }
+    sizeForArea(area) {
+      if (area == null) dart.nullFailed(I[6], 1092, 29, "area");
+      return new ui.Size.new(this.sizeForAreaOnAxis(area, basic_types.Axis.horizontal), this.sizeForAreaOnAxis(area, basic_types.Axis.vertical));
+    }
+    rectForArea(area) {
+      if (area == null) dart.nullFailed(I[6], 1099, 29, "area");
+      return this.offsetForArea(area)['&'](this.sizeForArea(area));
+    }
+    markTrackTypeSized(type) {
+      if (type == null) dart.nullFailed(I[6], 1103, 37, "type");
+      if (type == track_size.TrackType.column) {
+        this.hasColumnSizing = true;
+      } else {
+        this.hasRowSizing = true;
+      }
+    }
+    minMaxTrackSizesForAxis(axis) {
+      if (axis == null) dart.nullFailed(I[6], 1111, 39, "axis");
+      return axis == basic_types.Axis.horizontal ? new (T.MinMaxOfnum()).new(this.minWidthOfTracks, this.maxTracksWidth) : new (T.MinMaxOfnum()).new(this.minHeightOfTracks, this.maxTracksHeight);
+    }
+    baseSizesForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1117, 43, "type");
+      return this.tracksForType(type)[$map](core.double, dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 1118, 32, "t");
+        return t.baseSize;
+      }, T.GridTrackTodouble()))[$toList]();
+    }
+    totalBaseSizeOfTracksForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1120, 49, "type");
+      return collections.sum(core.double, this.baseSizesForType(type));
+    }
+    setMinMaxTrackSizesForAxis(min, max, axis) {
+      if (min == null) dart.nullFailed(I[6], 1123, 42, "min");
+      if (max == null) dart.nullFailed(I[6], 1123, 54, "max");
+      if (axis == null) dart.nullFailed(I[6], 1123, 64, "axis");
+      if (axis == basic_types.Axis.horizontal) {
+        this.minWidthOfTracks = min;
+        this.maxTracksWidth = max;
+      } else {
+        this.minHeightOfTracks = min;
+        this.maxTracksHeight = max;
+      }
+    }
+    unitGapAlongAxis(axis) {
+      if (axis == null) dart.nullFailed(I[6], 1133, 32, "axis");
+      return axis == basic_types.Axis.horizontal ? this.columnGap : this.rowGap;
+    }
+    unitGapForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1136, 35, "type");
+      return this.unitGapAlongAxis(track_size.measurementAxisForTrackType(type));
+    }
+    totalGapForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1139, 36, "type");
+      return (dart.notNull(this.tracksForType(type)[$length]) - 1) * dart.notNull(this.unitGapForType(type));
+    }
+    isAxisSized(sizingAxis) {
+      if (sizingAxis == null) dart.nullFailed(I[6], 1142, 25, "sizingAxis");
+      return sizingAxis == basic_types.Axis.horizontal ? this.hasColumnSizing : this.hasRowSizing;
+    }
+    tracksForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1145, 43, "type");
+      return type == track_size.TrackType.column ? this.columnTracks : this.rowTracks;
+    }
+    tracksAlongAxis(sizingAxis) {
+      if (sizingAxis == null) dart.nullFailed(I[6], 1148, 40, "sizingAxis");
+      return sizingAxis == basic_types.Axis.horizontal ? this.columnTracks : this.rowTracks;
+    }
+    sizeForAreaOnAxis(area, axis) {
+      if (area == null) dart.nullFailed(I[6], 1151, 37, "area");
+      if (axis == null) dart.nullFailed(I[6], 1151, 48, "axis");
+      if (!dart.test(this.isAxisSized(axis))) dart.assertFailed(null, I[6], 1152, 12, "isAxisSized(axis)");
+      let trackBaseSizes = this.tracksAlongAxis(axis)[$getRange](area.startForAxis(axis), area.endForAxis(axis))[$map](core.double, dart.fn(t => {
+        if (t == null) dart.nullFailed(I[6], 1158, 15, "t");
+        return t.baseSize;
+      }, T.GridTrackTodouble()));
+      let gapSize = (dart.notNull(area.spanForAxis(axis)) - 1) * dart.notNull(this.unitGapAlongAxis(axis));
+      return math.max(core.double, 0.0, dart.notNull(collections.sum(core.double, trackBaseSizes)) + gapSize);
+    }
+    invalidateTrackStartsForType(type) {
+      if (type == null) dart.nullFailed(I[6], 1163, 47, "type");
+      if (type == track_size.TrackType.column) {
+        this[_ltrColumnStarts] = null;
+      } else {
+        this[_rowStarts] = null;
+      }
+    }
+  };
+  (layout_grid$.GridSizingInfo.new = function(opts) {
+    let columnTracks = opts && 'columnTracks' in opts ? opts.columnTracks : null;
+    if (columnTracks == null) dart.nullFailed(I[6], 1008, 30, "columnTracks");
+    let rowTracks = opts && 'rowTracks' in opts ? opts.rowTracks : null;
+    if (rowTracks == null) dart.nullFailed(I[6], 1009, 30, "rowTracks");
+    let columnGap = opts && 'columnGap' in opts ? opts.columnGap : null;
+    if (columnGap == null) dart.nullFailed(I[6], 1010, 19, "columnGap");
+    let rowGap = opts && 'rowGap' in opts ? opts.rowGap : null;
+    if (rowGap == null) dart.nullFailed(I[6], 1011, 19, "rowGap");
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    if (textDirection == null) dart.nullFailed(I[6], 1012, 19, "textDirection");
+    this[gridSize] = null;
+    this[_ltrColumnStarts] = null;
+    this[_rowStarts] = null;
+    this[minWidthOfTracks] = 0.0;
+    this[minHeightOfTracks] = 0.0;
+    this[maxTracksWidth] = 0.0;
+    this[maxTracksHeight] = 0.0;
+    this[hasColumnSizing] = false;
+    this[hasRowSizing] = false;
+    this[columnGap$0] = columnGap;
+    this[rowGap$0] = rowGap;
+    this[textDirection$0] = textDirection;
+    this[columnTracks$] = new (T.UnmodifiableListViewOfGridTrack()).new(columnTracks);
+    this[rowTracks$] = new (T.UnmodifiableListViewOfGridTrack()).new(rowTracks);
+    ;
+  }).prototype = layout_grid$.GridSizingInfo.prototype;
+  (layout_grid$.GridSizingInfo.fromTrackSizeFunctions = function(opts) {
+    let columnSizeFunctions = opts && 'columnSizeFunctions' in opts ? opts.columnSizeFunctions : null;
+    if (columnSizeFunctions == null) dart.nullFailed(I[6], 1017, 30, "columnSizeFunctions");
+    let rowSizeFunctions = opts && 'rowSizeFunctions' in opts ? opts.rowSizeFunctions : null;
+    if (rowSizeFunctions == null) dart.nullFailed(I[6], 1018, 30, "rowSizeFunctions");
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    if (textDirection == null) dart.nullFailed(I[6], 1019, 28, "textDirection");
+    let columnGap = opts && 'columnGap' in opts ? opts.columnGap : 0;
+    if (columnGap == null) dart.nullFailed(I[6], 1020, 12, "columnGap");
+    let rowGap = opts && 'rowGap' in opts ? opts.rowGap : 0;
+    if (rowGap == null) dart.nullFailed(I[6], 1021, 12, "rowGap");
+    layout_grid$.GridSizingInfo.new.call(this, {columnTracks: layout_grid$._sizesToTracks(columnSizeFunctions), rowTracks: layout_grid$._sizesToTracks(rowSizeFunctions), textDirection: textDirection, columnGap: columnGap, rowGap: rowGap});
+  }).prototype = layout_grid$.GridSizingInfo.prototype;
+  dart.addTypeTests(layout_grid$.GridSizingInfo);
+  dart.addTypeCaches(layout_grid$.GridSizingInfo);
+  dart.setMethodSignature(layout_grid$.GridSizingInfo, () => ({
+    __proto__: dart.getMethods(layout_grid$.GridSizingInfo.__proto__),
+    offsetForArea: dart.fnType(ui.Offset, [placement.GridArea]),
+    sizeForArea: dart.fnType(ui.Size, [placement.GridArea]),
+    rectForArea: dart.fnType(ui.Rect, [placement.GridArea]),
+    markTrackTypeSized: dart.fnType(dart.void, [track_size.TrackType]),
+    minMaxTrackSizesForAxis: dart.fnType(layout_grid$.MinMax$(core.num), [basic_types.Axis]),
+    baseSizesForType: dart.fnType(core.List$(core.double), [track_size.TrackType]),
+    totalBaseSizeOfTracksForType: dart.fnType(core.double, [track_size.TrackType]),
+    setMinMaxTrackSizesForAxis: dart.fnType(dart.void, [core.double, core.double, basic_types.Axis]),
+    unitGapAlongAxis: dart.fnType(core.double, [basic_types.Axis]),
+    unitGapForType: dart.fnType(core.double, [track_size.TrackType]),
+    totalGapForType: dart.fnType(core.double, [track_size.TrackType]),
+    isAxisSized: dart.fnType(core.bool, [basic_types.Axis]),
+    tracksForType: dart.fnType(core.List$(layout_grid$.GridTrack), [track_size.TrackType]),
+    tracksAlongAxis: dart.fnType(core.List$(layout_grid$.GridTrack), [basic_types.Axis]),
+    sizeForAreaOnAxis: dart.fnType(core.double, [placement.GridArea, basic_types.Axis]),
+    invalidateTrackStartsForType: dart.fnType(dart.void, [track_size.TrackType])
+  }));
+  dart.setGetterSignature(layout_grid$.GridSizingInfo, () => ({
+    __proto__: dart.getGetters(layout_grid$.GridSizingInfo.__proto__),
+    columnStartsWithoutGaps: dart.nullable(core.List$(core.double)),
+    rowStartsWithoutGaps: dart.nullable(core.List$(core.double)),
+    internalGridSize: ui.Size
+  }));
+  dart.setLibraryUri(layout_grid$.GridSizingInfo, I[7]);
+  dart.setFieldSignature(layout_grid$.GridSizingInfo, () => ({
+    __proto__: dart.getFields(layout_grid$.GridSizingInfo.__proto__),
+    gridSize: dart.fieldType(dart.nullable(ui.Size)),
+    columnGap: dart.finalFieldType(core.double),
+    rowGap: dart.finalFieldType(core.double),
+    columnTracks: dart.finalFieldType(collection.UnmodifiableListView$(layout_grid$.GridTrack)),
+    rowTracks: dart.finalFieldType(collection.UnmodifiableListView$(layout_grid$.GridTrack)),
+    textDirection: dart.finalFieldType(ui.TextDirection),
+    [_ltrColumnStarts]: dart.fieldType(dart.nullable(core.List$(core.double))),
+    [_rowStarts]: dart.fieldType(dart.nullable(core.List$(core.double))),
+    minWidthOfTracks: dart.fieldType(core.double),
+    minHeightOfTracks: dart.fieldType(core.double),
+    maxTracksWidth: dart.fieldType(core.double),
+    maxTracksHeight: dart.fieldType(core.double),
+    hasColumnSizing: dart.fieldType(core.bool),
+    hasRowSizing: dart.fieldType(core.bool)
+  }));
+  var min$ = dart.privateName(layout_grid$, "MinMax.min");
+  var max$ = dart.privateName(layout_grid$, "MinMax.max");
+  const _is_MinMax_default = Symbol('_is_MinMax_default');
+  layout_grid$.MinMax$ = dart.generic(T => {
+    class MinMax extends core.Object {
+      get min() {
+        return this[min$];
+      }
+      set min(value) {
+        super.min = value;
+      }
+      get max() {
+        return this[max$];
+      }
+      set max(value) {
+        super.max = value;
+      }
+      toString() {
+        return this.min[$toStringAsFixed](1) + "->" + this.max[$toStringAsFixed](1) + (this.min == this.max ? " (same)" : "");
+      }
+    }
+    (MinMax.new = function(min, max) {
+      if (min == null) dart.nullFailed(I[6], 1195, 21, "min");
+      if (max == null) dart.nullFailed(I[6], 1195, 31, "max");
+      this[min$] = min;
+      this[max$] = max;
+      ;
+    }).prototype = MinMax.prototype;
+    dart.addTypeTests(MinMax);
+    MinMax.prototype[_is_MinMax_default] = true;
+    dart.addTypeCaches(MinMax);
+    dart.setLibraryUri(MinMax, I[7]);
+    dart.setFieldSignature(MinMax, () => ({
+      __proto__: dart.getFields(MinMax.__proto__),
+      min: dart.finalFieldType(T),
+      max: dart.finalFieldType(T)
+    }));
+    dart.defineExtensionMethods(MinMax, ['toString']);
+    return MinMax;
+  });
+  layout_grid$.MinMax = layout_grid$.MinMax$();
+  dart.addTypeTests(layout_grid$.MinMax, _is_MinMax_default);
+  layout_grid$.constraintBoundsForType = function constraintBoundsForType(constraints, type) {
+    if (type == null) dart.nullFailed(I[6], 948, 44, "type");
+    return type == track_size.TrackType.column ? new (T.MinMaxOfdouble()).new(dart.nullCheck(constraints).minWidth, constraints.maxWidth) : new (T.MinMaxOfdouble()).new(dart.nullCheck(constraints).minHeight, constraints.maxHeight);
+  };
+  layout_grid$._sizesToTracks = function _sizesToTracks(sizes) {
+    if (sizes == null) dart.nullFailed(I[6], 999, 68, "sizes");
+    return new (T.UnmodifiableListViewOfGridTrack()).new(enumerate.enumerate(track_size.TrackSize, sizes)[$map](layout_grid$.GridTrack, dart.fn(s => {
+      if (s == null) dart.nullFailed(I[6], 1002, 17, "s");
+      return new layout_grid$.GridTrack.new(s.index, s.value);
+    }, T.IndexedValueOfTrackSizeToGridTrack()))[$toList]({growable: false}));
+  };
+  layout_grid$._sortByGrowthPotential = function _sortByGrowthPotential(a, b) {
+    if (a == null) dart.nullFailed(I[6], 1172, 38, "a");
+    if (b == null) dart.nullFailed(I[6], 1172, 51, "b");
+    if (a.isInfinite != b.isInfinite) return dart.test(a.isInfinite) ? -1 : 1;
+    return (dart.notNull(a.growthLimit) - dart.notNull(a.baseSize))[$compareTo](dart.notNull(b.growthLimit) - dart.notNull(b.baseSize));
+  };
+  layout_grid$._childRectForOverflowComparison = function _childRectForOverflowComparison(gridRect, childRect) {
+    if (gridRect == null) dart.nullFailed(I[6], 1177, 43, "gridRect");
+    if (childRect == null) dart.nullFailed(I[6], 1177, 58, "childRect");
+    return new ui.Rect.fromLTRB(dart.notNull(gridRect.left) - dart.notNull(childRect.left) < 1e-10 ? gridRect.left : childRect.left, dart.notNull(gridRect.top) - dart.notNull(childRect.top) < 1e-10 ? gridRect.top : childRect.top, dart.notNull(childRect.right) - dart.notNull(gridRect.right) < 1e-10 ? gridRect.right : childRect.right, dart.notNull(childRect.bottom) - dart.notNull(gridRect.bottom) < 1e-10 ? gridRect.bottom : childRect.bottom);
+  };
+  placement$0.AutoPlacementPacking = class AutoPlacementPacking extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (placement$0.AutoPlacementPacking.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[8], 8, 6, "index");
+    if (_name == null) dart.nullFailed(I[8], 8, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = placement$0.AutoPlacementPacking.prototype;
+  dart.addTypeTests(placement$0.AutoPlacementPacking);
+  dart.addTypeCaches(placement$0.AutoPlacementPacking);
+  dart.setLibraryUri(placement$0.AutoPlacementPacking, I[9]);
+  dart.setFieldSignature(placement$0.AutoPlacementPacking, () => ({
+    __proto__: dart.getFields(placement$0.AutoPlacementPacking.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(placement$0.AutoPlacementPacking, ['toString']);
+  placement$0.AutoPlacementPacking.sparse = C[1] || CT.C1;
+  placement$0.AutoPlacementPacking.dense = C[4] || CT.C4;
+  placement$0.AutoPlacementPacking.values = C[19] || CT.C19;
+  var columnStart$0 = dart.privateName(placement$0, "GridPlacement.columnStart");
+  var columnSpan$0 = dart.privateName(placement$0, "GridPlacement.columnSpan");
+  var rowStart$0 = dart.privateName(placement$0, "GridPlacement.rowStart");
+  var rowSpan$0 = dart.privateName(placement$0, "GridPlacement.rowSpan");
+  placement$0.GridPlacement = class GridPlacement extends framework.ParentDataWidget$(layout_grid$.GridParentData) {
+    get columnStart() {
+      return this[columnStart$0];
+    }
+    set columnStart(value) {
+      super.columnStart = value;
+    }
+    get columnSpan() {
+      return this[columnSpan$0];
+    }
+    set columnSpan(value) {
+      super.columnSpan = value;
+    }
+    get rowStart() {
+      return this[rowStart$0];
+    }
+    set rowStart(value) {
+      super.rowStart = value;
+    }
+    get rowSpan() {
+      return this[rowSpan$0];
+    }
+    set rowSpan(value) {
+      super.rowSpan = value;
+    }
+    applyParentData(renderObject) {
+      if (renderObject == null) dart.nullFailed(I[8], 48, 37, "renderObject");
+      if (!layout_grid$.GridParentData.is(renderObject.parentData)) dart.assertFailed(null, I[8], 49, 12, "renderObject.parentData is GridParentData");
+      let parentData = layout_grid$.GridParentData.as(renderObject.parentData);
+      let needsLayout = false;
+      if (parentData.areaName != null) {
+        parentData.areaName = null;
+        needsLayout = true;
+      }
+      if (parentData.columnStart != this.columnStart) {
+        parentData.columnStart = this.columnStart;
+        needsLayout = true;
+      }
+      if (parentData.columnSpan != this.columnSpan) {
+        parentData.columnSpan = this.columnSpan;
+        needsLayout = true;
+      }
+      if (parentData.rowStart != this.rowStart) {
+        parentData.rowStart = this.rowStart;
+        needsLayout = true;
+      }
+      if (parentData.rowSpan != this.rowSpan) {
+        parentData.rowSpan = this.rowSpan;
+        needsLayout = true;
+      }
+      if (needsLayout) {
+        let targetParent = renderObject.parent;
+        if (layout_grid$.RenderLayoutGrid.is(targetParent)) targetParent.markNeedsPlacement();
+        if (object.RenderObject.is(targetParent)) targetParent.markNeedsLayout();
+      }
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[8], 89, 56, "properties");
+      super.debugFillProperties(properties);
+      if (this.columnStart != null) {
+        properties.add(new diagnostics.IntProperty.new("columnStart", this.columnStart));
+      } else {
+        properties.add(new diagnostics.StringProperty.new("columnStart", "auto"));
+      }
+      properties.add(new diagnostics.IntProperty.new("columnSpan", this.columnSpan));
+      if (this.rowStart != null) {
+        properties.add(new diagnostics.IntProperty.new("rowStart", this.rowStart));
+      } else {
+        properties.add(new diagnostics.StringProperty.new("rowStart", "auto"));
+      }
+      properties.add(new diagnostics.IntProperty.new("rowSpan", this.rowSpan));
+    }
+    get debugTypicalAncestorWidgetClass() {
+      return dart.wrapType(layout_grid.LayoutGrid);
+    }
+  };
+  (placement$0.GridPlacement.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    if (child == null) dart.nullFailed(I[8], 28, 21, "child");
+    let columnStart = opts && 'columnStart' in opts ? opts.columnStart : null;
+    let columnSpan = opts && 'columnSpan' in opts ? opts.columnSpan : 1;
+    if (columnSpan == null) dart.nullFailed(I[8], 30, 10, "columnSpan");
+    let rowStart = opts && 'rowStart' in opts ? opts.rowStart : null;
+    let rowSpan = opts && 'rowSpan' in opts ? opts.rowSpan : 1;
+    if (rowSpan == null) dart.nullFailed(I[8], 32, 10, "rowSpan");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[columnStart$0] = columnStart;
+    this[columnSpan$0] = columnSpan;
+    this[rowStart$0] = rowStart;
+    this[rowSpan$0] = rowSpan;
+    placement$0.GridPlacement.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = placement$0.GridPlacement.prototype;
+  dart.addTypeTests(placement$0.GridPlacement);
+  dart.addTypeCaches(placement$0.GridPlacement);
+  dart.setMethodSignature(placement$0.GridPlacement, () => ({
+    __proto__: dart.getMethods(placement$0.GridPlacement.__proto__),
+    applyParentData: dart.fnType(dart.void, [object.RenderObject])
+  }));
+  dart.setGetterSignature(placement$0.GridPlacement, () => ({
+    __proto__: dart.getGetters(placement$0.GridPlacement.__proto__),
+    debugTypicalAncestorWidgetClass: core.Type
+  }));
+  dart.setLibraryUri(placement$0.GridPlacement, I[9]);
+  dart.setFieldSignature(placement$0.GridPlacement, () => ({
+    __proto__: dart.getFields(placement$0.GridPlacement.__proto__),
+    columnStart: dart.finalFieldType(dart.nullable(core.int)),
+    columnSpan: dart.finalFieldType(core.int),
+    rowStart: dart.finalFieldType(dart.nullable(core.int)),
+    rowSpan: dart.finalFieldType(core.int)
+  }));
+  var areaName$ = dart.privateName(placement$0, "NamedAreaGridPlacement.areaName");
+  placement$0.NamedAreaGridPlacement = class NamedAreaGridPlacement extends framework.ParentDataWidget$(layout_grid$.GridParentData) {
+    get areaName() {
+      return this[areaName$];
+    }
+    set areaName(value) {
+      super.areaName = value;
+    }
+    applyParentData(renderObject) {
+      if (renderObject == null) dart.nullFailed(I[8], 125, 37, "renderObject");
+      if (!layout_grid$.GridParentData.is(renderObject.parentData)) dart.assertFailed(null, I[8], 126, 12, "renderObject.parentData is GridParentData");
+      let parentData = layout_grid$.GridParentData.as(renderObject.parentData);
+      if (parentData.areaName != this.areaName) {
+        parentData.areaName = this.areaName;
+        let targetParent = renderObject.parent;
+        if (layout_grid$.RenderLayoutGrid.is(targetParent)) targetParent.markNeedsPlacement();
+        if (object.RenderObject.is(targetParent)) targetParent.markNeedsLayout();
+      }
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[8], 139, 56, "properties");
+      super.debugFillProperties(properties);
+      properties.add(new diagnostics.StringProperty.new("areaName", this.areaName));
+    }
+    get debugTypicalAncestorWidgetClass() {
+      return dart.wrapType(layout_grid.LayoutGrid);
+    }
+  };
+  (placement$0.NamedAreaGridPlacement.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let areaName = opts && 'areaName' in opts ? opts.areaName : null;
+    if (areaName == null) dart.nullFailed(I[8], 118, 19, "areaName");
+    let child = opts && 'child' in opts ? opts.child : null;
+    if (child == null) dart.nullFailed(I[8], 119, 21, "child");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[areaName$] = areaName;
+    placement$0.NamedAreaGridPlacement.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = placement$0.NamedAreaGridPlacement.prototype;
+  dart.addTypeTests(placement$0.NamedAreaGridPlacement);
+  dart.addTypeCaches(placement$0.NamedAreaGridPlacement);
+  dart.setMethodSignature(placement$0.NamedAreaGridPlacement, () => ({
+    __proto__: dart.getMethods(placement$0.NamedAreaGridPlacement.__proto__),
+    applyParentData: dart.fnType(dart.void, [object.RenderObject])
+  }));
+  dart.setGetterSignature(placement$0.NamedAreaGridPlacement, () => ({
+    __proto__: dart.getGetters(placement$0.NamedAreaGridPlacement.__proto__),
+    debugTypicalAncestorWidgetClass: core.Type
+  }));
+  dart.setLibraryUri(placement$0.NamedAreaGridPlacement, I[9]);
+  dart.setFieldSignature(placement$0.NamedAreaGridPlacement, () => ({
+    __proto__: dart.getFields(placement$0.NamedAreaGridPlacement.__proto__),
+    areaName: dart.finalFieldType(core.String)
+  }));
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  placement$0['GridPlacementExtensions|inGridArea'] = function GridPlacementExtensions$124inGridArea($this, areaName, opts) {
+    if ($this == null) dart.nullFailed(I[8], 150, 26, "#this");
+    if (areaName == null) dart.nullFailed(I[8], 150, 44, "areaName");
+    let key = opts && 'key' in opts ? opts.key : null;
+    return new placement$0.NamedAreaGridPlacement.new({key: key, areaName: areaName, child: $this, $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+  };
+  placement$0['GridPlacementExtensions|get#inGridArea'] = function GridPlacementExtensions$124get$35inGridArea($this) {
+    if ($this == null) dart.nullFailed(I[8], 150, 26, "#this");
+    return dart.fn((areaName, opts) => {
+      if (areaName == null) dart.nullFailed(I[8], 150, 44, "areaName");
+      let key = opts && 'key' in opts ? opts.key : null;
+      return placement$0['GridPlacementExtensions|inGridArea']($this, areaName, {key: key});
+    }, T.String__ToNamedAreaGridPlacement());
+  };
+  placement$0['GridPlacementExtensions|withGridPlacement'] = function GridPlacementExtensions$124withGridPlacement($this, opts) {
+    if ($this == null) dart.nullFailed(I[8], 158, 17, "#this");
+    let key = opts && 'key' in opts ? opts.key : null;
+    let columnStart = opts && 'columnStart' in opts ? opts.columnStart : null;
+    let columnSpan = opts && 'columnSpan' in opts ? opts.columnSpan : 1;
+    if (columnSpan == null) dart.nullFailed(I[8], 161, 9, "columnSpan");
+    let rowStart = opts && 'rowStart' in opts ? opts.rowStart : null;
+    let rowSpan = opts && 'rowSpan' in opts ? opts.rowSpan : 1;
+    if (rowSpan == null) dart.nullFailed(I[8], 163, 9, "rowSpan");
+    return new placement$0.GridPlacement.new({key: key, columnStart: columnStart, columnSpan: columnSpan, rowStart: rowStart, rowSpan: rowSpan, child: $this, $creationLocationd_0dea112b090073317d4: C[25] || CT.C25});
+  };
+  placement$0['GridPlacementExtensions|get#withGridPlacement'] = function GridPlacementExtensions$124get$35withGridPlacement($this) {
+    if ($this == null) dart.nullFailed(I[8], 158, 17, "#this");
+    return dart.fn(opts => {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let columnStart = opts && 'columnStart' in opts ? opts.columnStart : null;
+      let columnSpan = opts && 'columnSpan' in opts ? opts.columnSpan : 1;
+      if (columnSpan == null) dart.nullFailed(I[8], 161, 9, "columnSpan");
+      let rowStart = opts && 'rowStart' in opts ? opts.rowStart : null;
+      let rowSpan = opts && 'rowSpan' in opts ? opts.rowSpan : 1;
+      if (rowSpan == null) dart.nullFailed(I[8], 163, 9, "rowSpan");
+      return placement$0['GridPlacementExtensions|withGridPlacement']($this, {key: key, columnStart: columnStart, columnSpan: columnSpan, rowStart: rowStart, rowSpan: rowSpan});
+    }, T.__ToGridPlacement());
+  };
+  var name$ = dart.privateName(helpers, "NamedAreaGridPlacementBuilder.name");
+  helpers.NamedAreaGridPlacementBuilder = class NamedAreaGridPlacementBuilder extends core.Object {
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    containing(child) {
+      if (child == null) dart.nullFailed(I[10], 77, 44, "child");
+      return new placement$0.NamedAreaGridPlacement.new({areaName: this.name, child: child, $creationLocationd_0dea112b090073317d4: C[33] || CT.C33});
+    }
+  };
+  (helpers.NamedAreaGridPlacementBuilder.__ = function(name) {
+    if (name == null) dart.nullFailed(I[10], 73, 40, "name");
+    this[name$] = name;
+    ;
+  }).prototype = helpers.NamedAreaGridPlacementBuilder.prototype;
+  dart.addTypeTests(helpers.NamedAreaGridPlacementBuilder);
+  dart.addTypeCaches(helpers.NamedAreaGridPlacementBuilder);
+  dart.setMethodSignature(helpers.NamedAreaGridPlacementBuilder, () => ({
+    __proto__: dart.getMethods(helpers.NamedAreaGridPlacementBuilder.__proto__),
+    containing: dart.fnType(placement$0.NamedAreaGridPlacement, [framework.Widget])
+  }));
+  dart.setLibraryUri(helpers.NamedAreaGridPlacementBuilder, I[11]);
+  dart.setFieldSignature(helpers.NamedAreaGridPlacementBuilder, () => ({
+    __proto__: dart.getFields(helpers.NamedAreaGridPlacementBuilder.__proto__),
+    name: dart.finalFieldType(core.String)
+  }));
+  helpers.intrinsic = function intrinsic(opts) {
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    return new track_size.IntrinsicContentTrackSize.new({debugLabel: debugLabel});
+  };
+  helpers.fixed = function fixed(sizeInPx, opts) {
+    if (sizeInPx == null) dart.nullFailed(I[10], 16, 29, "sizeInPx");
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    return new track_size.FixedTrackSize.new(sizeInPx, {debugLabel: debugLabel});
+  };
+  helpers.flex = function flex(flexFactor, opts) {
+    if (flexFactor == null) dart.nullFailed(I[10], 20, 31, "flexFactor");
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    return new track_size.FlexibleTrackSize.new(flexFactor, {debugLabel: debugLabel});
+  };
+  helpers['TrackUnitsNumExtension|get#px'] = function TrackUnitsNumExtension$124get$35px($this) {
+    if ($this == null) dart.nullFailed(I[10], 25, 22, "#this");
+    return helpers.fixed($this[$toDouble]());
+  };
+  helpers['TrackUnitsNumExtension|get#fr'] = function TrackUnitsNumExtension$124get$35fr($this) {
+    if ($this == null) dart.nullFailed(I[10], 26, 25, "#this");
+    return helpers.flex($this[$toDouble]());
+  };
+  helpers.repeat = function repeat(times, tracks) {
+    if (times == null) dart.nullFailed(I[10], 34, 28, "times");
+    if (tracks == null) dart.nullFailed(I[10], 34, 51, "tracks");
+    return helpers._repeat(track_size.TrackSize, times, tracks)[$toList]();
+  };
+  helpers._repeat = function _repeat(T, times, source) {
+    if (times == null) dart.nullFailed(I[10], 37, 28, "times");
+    if (source == null) dart.nullFailed(I[10], 37, 47, "source");
+    return new (_js_helper.SyncIterable$(T)).new(function* _repeat() {
+      for (let i = 0; i < dart.notNull(times); i = i + 1) {
+        yield* source;
+      }
+    });
+  };
+  helpers.gridArea = function gridArea(name) {
+    if (name == null) dart.nullFailed(I[10], 66, 47, "name");
+    return new helpers.NamedAreaGridPlacementBuilder.__(name);
+  };
+  var TrackSize_debugLabel = dart.privateName(track_size, "TrackSize.debugLabel");
+  dart.defineLazy(helpers, {
+    /*helpers.auto*/get auto() {
+      return C[37] || CT.C37;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter_layout_grid/src/rendering/placement.dart", {
+    "package:flutter_layout_grid/src/rendering/placement.dart": placement$,
+    "package:flutter_layout_grid/src/rendering/debug.dart": debug,
+    "package:flutter_layout_grid/src/widgets/layout_grid.dart": layout_grid,
+    "package:flutter_layout_grid/src/foundation/box.dart": box$,
+    "package:flutter_layout_grid/src/rendering/layout_grid.dart": layout_grid$,
+    "package:flutter_layout_grid/src/widgets/placement.dart": placement$0,
+    "package:flutter_layout_grid/src/helpers.dart": helpers,
+    "package:flutter_layout_grid/flutter_layout_grid.dart": flutter_layout_grid
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["placement.dart","debug.dart","../widgets/layout_grid.dart","../foundation/box.dart","layout_grid.dart","../widgets/placement.dart","../helpers.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../C:/packages/flutter_layout_grid/src/rendering/placement.dart.lib.js"}');
+  // Exports:
+  return {
+    src__rendering__placement: placement$,
+    src__rendering__debug: debug,
+    src__widgets__layout_grid: layout_grid,
+    src__foundation__box: box$,
+    src__rendering__layout_grid: layout_grid$,
+    src__widgets__placement: placement$0,
+    src__helpers: helpers,
+    flutter_layout_grid: flutter_layout_grid
+  };
+}));
+
+//# sourceMappingURL=placement.dart.lib.js.map

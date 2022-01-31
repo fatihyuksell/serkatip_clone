@@ -1,0 +1,430 @@
+define(['dart_sdk'], (function load__packages__flutter_math_fork__src__ast__font_metrics_dart(dart_sdk) {
+  'use strict';
+  const core = dart_sdk.core;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  var font_metrics = Object.create(dart.library);
+  var $_get = dartx._get;
+  dart._checkModuleNullSafetyMode(false);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var I = [
+    "file:///D:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_math_fork-0.3.3+1/lib/src/ast/font_metrics.dart",
+    "package:flutter_math_fork/src/ast/font_metrics.dart"
+  ];
+  var slant$ = dart.privateName(font_metrics, "FontMetrics.slant");
+  var space$ = dart.privateName(font_metrics, "FontMetrics.space");
+  var stretch$ = dart.privateName(font_metrics, "FontMetrics.stretch");
+  var shrink$ = dart.privateName(font_metrics, "FontMetrics.shrink");
+  var xHeight$ = dart.privateName(font_metrics, "FontMetrics.xHeight");
+  var quad$ = dart.privateName(font_metrics, "FontMetrics.quad");
+  var extraSpace$ = dart.privateName(font_metrics, "FontMetrics.extraSpace");
+  var num1$ = dart.privateName(font_metrics, "FontMetrics.num1");
+  var num2$ = dart.privateName(font_metrics, "FontMetrics.num2");
+  var num3$ = dart.privateName(font_metrics, "FontMetrics.num3");
+  var denom1$ = dart.privateName(font_metrics, "FontMetrics.denom1");
+  var denom2$ = dart.privateName(font_metrics, "FontMetrics.denom2");
+  var sup1$ = dart.privateName(font_metrics, "FontMetrics.sup1");
+  var sup2$ = dart.privateName(font_metrics, "FontMetrics.sup2");
+  var sup3$ = dart.privateName(font_metrics, "FontMetrics.sup3");
+  var sub1$ = dart.privateName(font_metrics, "FontMetrics.sub1");
+  var sub2$ = dart.privateName(font_metrics, "FontMetrics.sub2");
+  var supDrop$ = dart.privateName(font_metrics, "FontMetrics.supDrop");
+  var subDrop$ = dart.privateName(font_metrics, "FontMetrics.subDrop");
+  var delim1$ = dart.privateName(font_metrics, "FontMetrics.delim1");
+  var delim2$ = dart.privateName(font_metrics, "FontMetrics.delim2");
+  var axisHeight$ = dart.privateName(font_metrics, "FontMetrics.axisHeight");
+  var defaultRuleThickness$ = dart.privateName(font_metrics, "FontMetrics.defaultRuleThickness");
+  var bigOpSpacing1$ = dart.privateName(font_metrics, "FontMetrics.bigOpSpacing1");
+  var bigOpSpacing2$ = dart.privateName(font_metrics, "FontMetrics.bigOpSpacing2");
+  var bigOpSpacing3$ = dart.privateName(font_metrics, "FontMetrics.bigOpSpacing3");
+  var bigOpSpacing4$ = dart.privateName(font_metrics, "FontMetrics.bigOpSpacing4");
+  var bigOpSpacing5$ = dart.privateName(font_metrics, "FontMetrics.bigOpSpacing5");
+  var sqrtRuleThickness$ = dart.privateName(font_metrics, "FontMetrics.sqrtRuleThickness");
+  var ptPerEm$ = dart.privateName(font_metrics, "FontMetrics.ptPerEm");
+  var doubleRuleSep$ = dart.privateName(font_metrics, "FontMetrics.doubleRuleSep");
+  var arrayRuleWidth$ = dart.privateName(font_metrics, "FontMetrics.arrayRuleWidth");
+  var fboxsep$ = dart.privateName(font_metrics, "FontMetrics.fboxsep");
+  var fboxrule$ = dart.privateName(font_metrics, "FontMetrics.fboxrule");
+  font_metrics.FontMetrics = class FontMetrics extends core.Object {
+    get slant() {
+      return this[slant$];
+    }
+    set slant(value) {
+      super.slant = value;
+    }
+    get space() {
+      return this[space$];
+    }
+    set space(value) {
+      super.space = value;
+    }
+    get stretch() {
+      return this[stretch$];
+    }
+    set stretch(value) {
+      super.stretch = value;
+    }
+    get shrink() {
+      return this[shrink$];
+    }
+    set shrink(value) {
+      super.shrink = value;
+    }
+    get xHeight() {
+      return this[xHeight$];
+    }
+    set xHeight(value) {
+      super.xHeight = value;
+    }
+    get quad() {
+      return this[quad$];
+    }
+    set quad(value) {
+      super.quad = value;
+    }
+    get extraSpace() {
+      return this[extraSpace$];
+    }
+    set extraSpace(value) {
+      super.extraSpace = value;
+    }
+    get num1() {
+      return this[num1$];
+    }
+    set num1(value) {
+      super.num1 = value;
+    }
+    get num2() {
+      return this[num2$];
+    }
+    set num2(value) {
+      super.num2 = value;
+    }
+    get num3() {
+      return this[num3$];
+    }
+    set num3(value) {
+      super.num3 = value;
+    }
+    get denom1() {
+      return this[denom1$];
+    }
+    set denom1(value) {
+      super.denom1 = value;
+    }
+    get denom2() {
+      return this[denom2$];
+    }
+    set denom2(value) {
+      super.denom2 = value;
+    }
+    get sup1() {
+      return this[sup1$];
+    }
+    set sup1(value) {
+      super.sup1 = value;
+    }
+    get sup2() {
+      return this[sup2$];
+    }
+    set sup2(value) {
+      super.sup2 = value;
+    }
+    get sup3() {
+      return this[sup3$];
+    }
+    set sup3(value) {
+      super.sup3 = value;
+    }
+    get sub1() {
+      return this[sub1$];
+    }
+    set sub1(value) {
+      super.sub1 = value;
+    }
+    get sub2() {
+      return this[sub2$];
+    }
+    set sub2(value) {
+      super.sub2 = value;
+    }
+    get supDrop() {
+      return this[supDrop$];
+    }
+    set supDrop(value) {
+      super.supDrop = value;
+    }
+    get subDrop() {
+      return this[subDrop$];
+    }
+    set subDrop(value) {
+      super.subDrop = value;
+    }
+    get delim1() {
+      return this[delim1$];
+    }
+    set delim1(value) {
+      super.delim1 = value;
+    }
+    get delim2() {
+      return this[delim2$];
+    }
+    set delim2(value) {
+      super.delim2 = value;
+    }
+    get axisHeight() {
+      return this[axisHeight$];
+    }
+    set axisHeight(value) {
+      super.axisHeight = value;
+    }
+    get defaultRuleThickness() {
+      return this[defaultRuleThickness$];
+    }
+    set defaultRuleThickness(value) {
+      super.defaultRuleThickness = value;
+    }
+    get bigOpSpacing1() {
+      return this[bigOpSpacing1$];
+    }
+    set bigOpSpacing1(value) {
+      super.bigOpSpacing1 = value;
+    }
+    get bigOpSpacing2() {
+      return this[bigOpSpacing2$];
+    }
+    set bigOpSpacing2(value) {
+      super.bigOpSpacing2 = value;
+    }
+    get bigOpSpacing3() {
+      return this[bigOpSpacing3$];
+    }
+    set bigOpSpacing3(value) {
+      super.bigOpSpacing3 = value;
+    }
+    get bigOpSpacing4() {
+      return this[bigOpSpacing4$];
+    }
+    set bigOpSpacing4(value) {
+      super.bigOpSpacing4 = value;
+    }
+    get bigOpSpacing5() {
+      return this[bigOpSpacing5$];
+    }
+    set bigOpSpacing5(value) {
+      super.bigOpSpacing5 = value;
+    }
+    get sqrtRuleThickness() {
+      return this[sqrtRuleThickness$];
+    }
+    set sqrtRuleThickness(value) {
+      super.sqrtRuleThickness = value;
+    }
+    get ptPerEm() {
+      return this[ptPerEm$];
+    }
+    set ptPerEm(value) {
+      super.ptPerEm = value;
+    }
+    get doubleRuleSep() {
+      return this[doubleRuleSep$];
+    }
+    set doubleRuleSep(value) {
+      super.doubleRuleSep = value;
+    }
+    get arrayRuleWidth() {
+      return this[arrayRuleWidth$];
+    }
+    set arrayRuleWidth(value) {
+      super.arrayRuleWidth = value;
+    }
+    get fboxsep() {
+      return this[fboxsep$];
+    }
+    set fboxsep(value) {
+      super.fboxsep = value;
+    }
+    get fboxrule() {
+      return this[fboxrule$];
+    }
+    set fboxrule(value) {
+      super.fboxrule = value;
+    }
+    get cssEmPerMu() {
+      return dart.notNull(this.quad) / 18;
+    }
+    static fromMap(map) {
+      if (map == null) dart.nullFailed(I[0], 93, 51, "map");
+      try {
+        return new font_metrics.FontMetrics.new({slant: dart.nullCheck(map[$_get]("slant")), space: dart.nullCheck(map[$_get]("space")), stretch: dart.nullCheck(map[$_get]("stretch")), shrink: dart.nullCheck(map[$_get]("shrink")), xHeight: dart.nullCheck(map[$_get]("xHeight")), quad: dart.nullCheck(map[$_get]("quad")), extraSpace: dart.nullCheck(map[$_get]("extraSpace")), num1: dart.nullCheck(map[$_get]("num1")), num2: dart.nullCheck(map[$_get]("num2")), num3: dart.nullCheck(map[$_get]("num3")), denom1: dart.nullCheck(map[$_get]("denom1")), denom2: dart.nullCheck(map[$_get]("denom2")), sup1: dart.nullCheck(map[$_get]("sup1")), sup2: dart.nullCheck(map[$_get]("sup2")), sup3: dart.nullCheck(map[$_get]("sup3")), sub1: dart.nullCheck(map[$_get]("sub1")), sub2: dart.nullCheck(map[$_get]("sub2")), supDrop: dart.nullCheck(map[$_get]("supDrop")), subDrop: dart.nullCheck(map[$_get]("subDrop")), delim1: dart.nullCheck(map[$_get]("delim1")), delim2: dart.nullCheck(map[$_get]("delim2")), axisHeight: dart.nullCheck(map[$_get]("axisHeight")), defaultRuleThickness: dart.nullCheck(map[$_get]("defaultRuleThickness")), bigOpSpacing1: dart.nullCheck(map[$_get]("bigOpSpacing1")), bigOpSpacing2: dart.nullCheck(map[$_get]("bigOpSpacing2")), bigOpSpacing3: dart.nullCheck(map[$_get]("bigOpSpacing3")), bigOpSpacing4: dart.nullCheck(map[$_get]("bigOpSpacing4")), bigOpSpacing5: dart.nullCheck(map[$_get]("bigOpSpacing5")), sqrtRuleThickness: dart.nullCheck(map[$_get]("sqrtRuleThickness")), ptPerEm: dart.nullCheck(map[$_get]("ptPerEm")), doubleRuleSep: dart.nullCheck(map[$_get]("doubleRuleSep")), arrayRuleWidth: dart.nullCheck(map[$_get]("arrayRuleWidth")), fboxsep: dart.nullCheck(map[$_get]("fboxsep")), fboxrule: dart.nullCheck(map[$_get]("fboxrule"))});
+      } catch (e) {
+        let ex = dart.getThrown(e);
+        if (core.Error.is(ex)) {
+          return null;
+        } else
+          throw e;
+      }
+    }
+  };
+  (font_metrics.FontMetrics.new = function(opts) {
+    let slant = opts && 'slant' in opts ? opts.slant : null;
+    if (slant == null) dart.nullFailed(I[0], 57, 19, "slant");
+    let space = opts && 'space' in opts ? opts.space : null;
+    if (space == null) dart.nullFailed(I[0], 58, 19, "space");
+    let stretch = opts && 'stretch' in opts ? opts.stretch : null;
+    if (stretch == null) dart.nullFailed(I[0], 59, 19, "stretch");
+    let shrink = opts && 'shrink' in opts ? opts.shrink : null;
+    if (shrink == null) dart.nullFailed(I[0], 60, 19, "shrink");
+    let xHeight = opts && 'xHeight' in opts ? opts.xHeight : null;
+    if (xHeight == null) dart.nullFailed(I[0], 61, 19, "xHeight");
+    let quad = opts && 'quad' in opts ? opts.quad : null;
+    if (quad == null) dart.nullFailed(I[0], 62, 19, "quad");
+    let extraSpace = opts && 'extraSpace' in opts ? opts.extraSpace : null;
+    if (extraSpace == null) dart.nullFailed(I[0], 63, 19, "extraSpace");
+    let num1 = opts && 'num1' in opts ? opts.num1 : null;
+    if (num1 == null) dart.nullFailed(I[0], 64, 19, "num1");
+    let num2 = opts && 'num2' in opts ? opts.num2 : null;
+    if (num2 == null) dart.nullFailed(I[0], 65, 19, "num2");
+    let num3 = opts && 'num3' in opts ? opts.num3 : null;
+    if (num3 == null) dart.nullFailed(I[0], 66, 19, "num3");
+    let denom1 = opts && 'denom1' in opts ? opts.denom1 : null;
+    if (denom1 == null) dart.nullFailed(I[0], 67, 19, "denom1");
+    let denom2 = opts && 'denom2' in opts ? opts.denom2 : null;
+    if (denom2 == null) dart.nullFailed(I[0], 68, 19, "denom2");
+    let sup1 = opts && 'sup1' in opts ? opts.sup1 : null;
+    if (sup1 == null) dart.nullFailed(I[0], 69, 19, "sup1");
+    let sup2 = opts && 'sup2' in opts ? opts.sup2 : null;
+    if (sup2 == null) dart.nullFailed(I[0], 70, 19, "sup2");
+    let sup3 = opts && 'sup3' in opts ? opts.sup3 : null;
+    if (sup3 == null) dart.nullFailed(I[0], 71, 19, "sup3");
+    let sub1 = opts && 'sub1' in opts ? opts.sub1 : null;
+    if (sub1 == null) dart.nullFailed(I[0], 72, 19, "sub1");
+    let sub2 = opts && 'sub2' in opts ? opts.sub2 : null;
+    if (sub2 == null) dart.nullFailed(I[0], 73, 19, "sub2");
+    let supDrop = opts && 'supDrop' in opts ? opts.supDrop : null;
+    if (supDrop == null) dart.nullFailed(I[0], 74, 19, "supDrop");
+    let subDrop = opts && 'subDrop' in opts ? opts.subDrop : null;
+    if (subDrop == null) dart.nullFailed(I[0], 75, 19, "subDrop");
+    let delim1 = opts && 'delim1' in opts ? opts.delim1 : null;
+    if (delim1 == null) dart.nullFailed(I[0], 76, 19, "delim1");
+    let delim2 = opts && 'delim2' in opts ? opts.delim2 : null;
+    if (delim2 == null) dart.nullFailed(I[0], 77, 19, "delim2");
+    let axisHeight = opts && 'axisHeight' in opts ? opts.axisHeight : null;
+    if (axisHeight == null) dart.nullFailed(I[0], 78, 19, "axisHeight");
+    let defaultRuleThickness = opts && 'defaultRuleThickness' in opts ? opts.defaultRuleThickness : null;
+    if (defaultRuleThickness == null) dart.nullFailed(I[0], 79, 19, "defaultRuleThickness");
+    let bigOpSpacing1 = opts && 'bigOpSpacing1' in opts ? opts.bigOpSpacing1 : null;
+    if (bigOpSpacing1 == null) dart.nullFailed(I[0], 80, 19, "bigOpSpacing1");
+    let bigOpSpacing2 = opts && 'bigOpSpacing2' in opts ? opts.bigOpSpacing2 : null;
+    if (bigOpSpacing2 == null) dart.nullFailed(I[0], 81, 19, "bigOpSpacing2");
+    let bigOpSpacing3 = opts && 'bigOpSpacing3' in opts ? opts.bigOpSpacing3 : null;
+    if (bigOpSpacing3 == null) dart.nullFailed(I[0], 82, 19, "bigOpSpacing3");
+    let bigOpSpacing4 = opts && 'bigOpSpacing4' in opts ? opts.bigOpSpacing4 : null;
+    if (bigOpSpacing4 == null) dart.nullFailed(I[0], 83, 19, "bigOpSpacing4");
+    let bigOpSpacing5 = opts && 'bigOpSpacing5' in opts ? opts.bigOpSpacing5 : null;
+    if (bigOpSpacing5 == null) dart.nullFailed(I[0], 84, 19, "bigOpSpacing5");
+    let sqrtRuleThickness = opts && 'sqrtRuleThickness' in opts ? opts.sqrtRuleThickness : null;
+    if (sqrtRuleThickness == null) dart.nullFailed(I[0], 85, 19, "sqrtRuleThickness");
+    let ptPerEm = opts && 'ptPerEm' in opts ? opts.ptPerEm : null;
+    if (ptPerEm == null) dart.nullFailed(I[0], 86, 19, "ptPerEm");
+    let doubleRuleSep = opts && 'doubleRuleSep' in opts ? opts.doubleRuleSep : null;
+    if (doubleRuleSep == null) dart.nullFailed(I[0], 87, 19, "doubleRuleSep");
+    let arrayRuleWidth = opts && 'arrayRuleWidth' in opts ? opts.arrayRuleWidth : null;
+    if (arrayRuleWidth == null) dart.nullFailed(I[0], 88, 19, "arrayRuleWidth");
+    let fboxsep = opts && 'fboxsep' in opts ? opts.fboxsep : null;
+    if (fboxsep == null) dart.nullFailed(I[0], 89, 19, "fboxsep");
+    let fboxrule = opts && 'fboxrule' in opts ? opts.fboxrule : null;
+    if (fboxrule == null) dart.nullFailed(I[0], 90, 19, "fboxrule");
+    this[slant$] = slant;
+    this[space$] = space;
+    this[stretch$] = stretch;
+    this[shrink$] = shrink;
+    this[xHeight$] = xHeight;
+    this[quad$] = quad;
+    this[extraSpace$] = extraSpace;
+    this[num1$] = num1;
+    this[num2$] = num2;
+    this[num3$] = num3;
+    this[denom1$] = denom1;
+    this[denom2$] = denom2;
+    this[sup1$] = sup1;
+    this[sup2$] = sup2;
+    this[sup3$] = sup3;
+    this[sub1$] = sub1;
+    this[sub2$] = sub2;
+    this[supDrop$] = supDrop;
+    this[subDrop$] = subDrop;
+    this[delim1$] = delim1;
+    this[delim2$] = delim2;
+    this[axisHeight$] = axisHeight;
+    this[defaultRuleThickness$] = defaultRuleThickness;
+    this[bigOpSpacing1$] = bigOpSpacing1;
+    this[bigOpSpacing2$] = bigOpSpacing2;
+    this[bigOpSpacing3$] = bigOpSpacing3;
+    this[bigOpSpacing4$] = bigOpSpacing4;
+    this[bigOpSpacing5$] = bigOpSpacing5;
+    this[sqrtRuleThickness$] = sqrtRuleThickness;
+    this[ptPerEm$] = ptPerEm;
+    this[doubleRuleSep$] = doubleRuleSep;
+    this[arrayRuleWidth$] = arrayRuleWidth;
+    this[fboxsep$] = fboxsep;
+    this[fboxrule$] = fboxrule;
+    ;
+  }).prototype = font_metrics.FontMetrics.prototype;
+  dart.addTypeTests(font_metrics.FontMetrics);
+  dart.addTypeCaches(font_metrics.FontMetrics);
+  dart.setGetterSignature(font_metrics.FontMetrics, () => ({
+    __proto__: dart.getGetters(font_metrics.FontMetrics.__proto__),
+    cssEmPerMu: core.double
+  }));
+  dart.setLibraryUri(font_metrics.FontMetrics, I[1]);
+  dart.setFieldSignature(font_metrics.FontMetrics, () => ({
+    __proto__: dart.getFields(font_metrics.FontMetrics.__proto__),
+    slant: dart.finalFieldType(core.double),
+    space: dart.finalFieldType(core.double),
+    stretch: dart.finalFieldType(core.double),
+    shrink: dart.finalFieldType(core.double),
+    xHeight: dart.finalFieldType(core.double),
+    quad: dart.finalFieldType(core.double),
+    extraSpace: dart.finalFieldType(core.double),
+    num1: dart.finalFieldType(core.double),
+    num2: dart.finalFieldType(core.double),
+    num3: dart.finalFieldType(core.double),
+    denom1: dart.finalFieldType(core.double),
+    denom2: dart.finalFieldType(core.double),
+    sup1: dart.finalFieldType(core.double),
+    sup2: dart.finalFieldType(core.double),
+    sup3: dart.finalFieldType(core.double),
+    sub1: dart.finalFieldType(core.double),
+    sub2: dart.finalFieldType(core.double),
+    supDrop: dart.finalFieldType(core.double),
+    subDrop: dart.finalFieldType(core.double),
+    delim1: dart.finalFieldType(core.double),
+    delim2: dart.finalFieldType(core.double),
+    axisHeight: dart.finalFieldType(core.double),
+    defaultRuleThickness: dart.finalFieldType(core.double),
+    bigOpSpacing1: dart.finalFieldType(core.double),
+    bigOpSpacing2: dart.finalFieldType(core.double),
+    bigOpSpacing3: dart.finalFieldType(core.double),
+    bigOpSpacing4: dart.finalFieldType(core.double),
+    bigOpSpacing5: dart.finalFieldType(core.double),
+    sqrtRuleThickness: dart.finalFieldType(core.double),
+    ptPerEm: dart.finalFieldType(core.double),
+    doubleRuleSep: dart.finalFieldType(core.double),
+    arrayRuleWidth: dart.finalFieldType(core.double),
+    fboxsep: dart.finalFieldType(core.double),
+    fboxrule: dart.finalFieldType(core.double)
+  }));
+  dart.trackLibraries("packages/flutter_math_fork/src/ast/font_metrics.dart", {
+    "package:flutter_math_fork/src/ast/font_metrics.dart": font_metrics
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["font_metrics.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAGe;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IAOA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IACA;;;;;;IAIA;;;;;;IAKA;;;;;;IAGA;;;;;;IAGA;;;;;;IACA;;;;;;IACA;;;;;;;AApDY,YAAK,cAAL,aAAO;IAAE;;UA2Fc;AAC9C;AACE,cAAO,0CACc,eAAZ,AAAG,GAAA,QAAC,kBACQ,eAAZ,AAAG,GAAA,QAAC,oBACY,eAAd,AAAG,GAAA,QAAC,qBACQ,eAAb,AAAG,GAAA,QAAC,qBACW,eAAd,AAAG,GAAA,QAAC,mBACI,eAAX,AAAG,GAAA,QAAC,sBACmB,eAAjB,AAAG,GAAA,QAAC,sBACC,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,kBACW,eAAb,AAAG,GAAA,QAAC,oBACS,eAAb,AAAG,GAAA,QAAC,kBACK,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,gBACO,eAAX,AAAG,GAAA,QAAC,mBACa,eAAd,AAAG,GAAA,QAAC,sBACU,eAAd,AAAG,GAAA,QAAC,qBACQ,eAAb,AAAG,GAAA,QAAC,oBACS,eAAb,AAAG,GAAA,QAAC,wBACiB,eAAjB,AAAG,GAAA,QAAC,sCACiC,eAA3B,AAAG,GAAA,QAAC,yCACS,eAApB,AAAG,GAAA,QAAC,kCACgB,eAApB,AAAG,GAAA,QAAC,kCACgB,eAApB,AAAG,GAAA,QAAC,kCACgB,eAApB,AAAG,GAAA,QAAC,kCACgB,eAApB,AAAG,GAAA,QAAC,sCACwB,eAAxB,AAAG,GAAA,QAAC,gCACA,eAAd,AAAG,GAAA,QAAC,4BACsB,eAApB,AAAG,GAAA,QAAC,mCACkB,eAArB,AAAG,GAAA,QAAC,6BACG,eAAd,AAAG,GAAA,QAAC,uBACY,eAAf,AAAG,GAAA,QAAC;;;AAEhB;AACA,gBAAO;;;;IAEX;;;QA7EgB;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;IAjCA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EACd","file":"../../../../../../../../../../C:/packages/flutter_math_fork/src/ast/font_metrics.dart.lib.js"}');
+  // Exports:
+  return {
+    src__ast__font_metrics: font_metrics
+  };
+}));
+
+//# sourceMappingURL=font_metrics.dart.lib.js.map
