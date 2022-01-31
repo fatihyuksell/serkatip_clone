@@ -59,7 +59,7 @@ class _DefineModalScreenState extends State<DefineModalScreen> {
               },
             ),
             ProfileActionItem(
-              title: 'Kartlarım',
+              title: 'My Cards',
               onTap: () {
                 // Navigator.push(context, MaterialPageRoute(builder: (_) => CardScreen()));
               },

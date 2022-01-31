@@ -17,6 +17,7 @@ class _LoginpageState extends State<Loginpage> {
     super.initState();
     nextTick((){
         context.read<HomeProvider>().getCardforHome();
+        //the mistake part
     });
     
   }
