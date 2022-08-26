@@ -42,3 +42,17 @@ class _NelerDahilState extends State<NelerDahil> {
 }
 
 class NelerdahilProvider {}
+
+class ABC extends StatefulWidget {
+  const ABC({Key key}) : super(key: key);
+
+  @override
+  State<ABC> createState() => _ABCState();
+}
+
+class _ABCState extends State<ABC> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
