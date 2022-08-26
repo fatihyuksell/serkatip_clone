@@ -12,7 +12,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'base_provider.dart';
 
 class HomeProvider extends BaseProvider {
-
   String organizationName;
 
   List<UserCard> cards = [];
@@ -22,7 +21,9 @@ class HomeProvider extends BaseProvider {
   Future<void> getCardforHome(String organizationName) async {
     setLoading(true);
     try {
-      await NetworkManager.instance.dio.get('/contacts/${organizationName}').then((value) {
+      await NetworkManager.instance.dio
+          .get('/contacts/${organizationName}')
+          .then((value) {
         this.organizationName = organizationName;
         inspect(value);
         final List json =
@@ -47,14 +48,14 @@ class HomeProvider extends BaseProvider {
     //insert + 200 dön
     try {
       //log(user.toJson().toString());
-      await NetworkManager.instance.dio.post('/contacts/${user.organizationName}', data:user.toJson()
-      ).then((value) async {
+      await NetworkManager.instance.dio
+          .post('/contacts/${user.organizationName}', data: user.toJson())
+          .then((value) async {
         inspect(value);
-        if(value.statusCode == 200){
+        if (value.statusCode == 200) {
           await getCardforHome(organizationName);
           Navigator.pop(appKey.currentContext);
-        }
-        else{
+        } else {
           throw Exception('HATA!!!!!!!!!');
         }
       });
@@ -71,15 +72,16 @@ class HomeProvider extends BaseProvider {
     //insert + 200 dön
     try {
       log(user.toJson().toString());
-      await NetworkManager.instance.dio.put('/contacts/${user.organizationName}/${user.id}', data:user.toJson()
-      ).then((value) async {
+      await NetworkManager.instance.dio
+          .put('/contacts/${user.organizationName}/${user.id}',
+              data: user.toJson())
+          .then((value) async {
         inspect(value);
         log(jsonEncode(user.toJson()));
-        if(value.statusCode == 200){
+        if (value.statusCode == 200) {
           await getCardforHome(organizationName);
           Navigator.pop(appKey.currentContext);
-        }
-        else{
+        } else {
           throw Exception('HATA!!!!!!!!!');
         }
       });
@@ -95,8 +97,8 @@ class HomeProvider extends BaseProvider {
     setLoading2(true);
     try {
       await NetworkManager.instance.dio.delete('/contacts/veysel/$id', data: {
-        'id':id,
-        }).then((value) {
+        'id': id,
+      }).then((value) {
         inspect(value);
         if (value.statusCode == 200) {
           getCardforHome(organizationName);
@@ -109,21 +111,23 @@ class HomeProvider extends BaseProvider {
     setLoading2(false);
   }
 
-  void search(String val){
-    searchcard = cards.where((element) => (element.name.toLowerCase().contains(val.toLowerCase())) || 
-    (element.surname.toLowerCase().contains(val.toLowerCase())) || 
-    (element.phoneNumber.toLowerCase().contains(val.toLowerCase())) || 
-    (element.city.toLowerCase().contains(val.toLowerCase())) || 
-    (element.job.toLowerCase().contains(val.toLowerCase()))
-    ).toList();
+  void search(String val) {
+    searchcard = cards
+        .where((element) =>
+            (element.name.toLowerCase().contains(val.toLowerCase())) ||
+            (element.surname.toLowerCase().contains(val.toLowerCase())) ||
+            (element.phoneNumber.toLowerCase().contains(val.toLowerCase())) ||
+            (element.city.toLowerCase().contains(val.toLowerCase())) ||
+            (element.job.toLowerCase().contains(val.toLowerCase())))
+        .toList();
 
     notifyListeners();
   }
 
-  void callNumber(number) async{
-  String num = number; 
-  await FlutterPhoneDirectCaller.callNumber(num);
-}
+  void callNumber(number) async {
+    String num = number;
+    await FlutterPhoneDirectCaller.callNumber(num);
+  }
 
   // List<ProductsModel> datass= [];
 
@@ -140,5 +144,5 @@ class HomeProvider extends BaseProvider {
   //   log('getData Home Provider dan gelmektedir');
   //   setLoading(false);
 
-  // } 
+  // }
 }

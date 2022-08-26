@@ -15,11 +15,10 @@ class _LoginpageState extends State<Loginpage> {
   @override
   void initState() {
     super.initState();
-    nextTick((){
-        context.read<HomeProvider>().getCardforHome();
-        //the mistake part
+    nextTick(() {
+      context.read<HomeProvider>().getCardforHome('');
+      //the mistake part
     });
-    
   }
 
   @override
@@ -29,9 +28,7 @@ class _LoginpageState extends State<Loginpage> {
       child: Material(
         child: Consumer<LoginProvider>(builder: (context, provider, _) {
           if (provider.isLoading) return CircularProgressIndicator();
-          return Material(
-            child: Text(provider.loginData.toString())
-          );
+          return Material(child: Text(provider.loginData.toString()));
         }),
       ),
     );
